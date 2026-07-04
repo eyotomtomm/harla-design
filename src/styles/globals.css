@@ -1,0 +1,13 @@
+/* Vendor CSS - loaded in original HTML order */
+@import './vendor/fontawesome-5.14.0.min.css';
+@import './vendor/bootstrap.min.css';
+@import './vendor/magnific-popup.min.css';
+@import './vendor/nice-select.min.css';
+@import './vendor/animate.min.css';
+@import './vendor/slick.min.css';
+
+/* Slick carousel theme (from npm) */
+@import 'slick-carousel/slick/slick-theme.css';
+
+/* Main stylesheet - verbatim from static template */
+@import './style.css';

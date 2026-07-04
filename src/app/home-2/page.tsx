@@ -1,0 +1,40 @@
+import HeroCarousel from '@/components/home/HeroCarousel';
+import ServiceCarousel from '@/components/home/ServiceCarousel';
+import TestimonialsSlider from '@/components/home/TestimonialsSlider';
+import CtaNewsletter from '@/components/home/CtaNewsletter';
+import BlogPreview from '@/components/home/BlogPreview';
+
+const slides = [
+  { id: 1, rotateWord: 'Design', description: 'Where vision meets structure.', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80', linkUrl: '/projects/house-design' },
+  { id: 2, rotateWord: 'Refine', description: 'Crafting spaces that inspire.', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80', linkUrl: '/projects/house-design' },
+  { id: 3, rotateWord: 'Dream', description: 'Elevating the way you live.', image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80', linkUrl: '/projects/house-design' },
+];
+
+const services = [
+  { id: 1, title: 'ART DIRECTION', description: 'Curating the visual identity of every space we design.', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80' },
+  { id: 2, title: 'INTERIOR DESIGN', description: 'Interiors that feel intentional, refined, and lived-in.', image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80' },
+  { id: 3, title: 'ARCHITECTURE', description: 'Structural design rooted in context and craft.', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80' },
+];
+
+const testimonials = [
+  { id: 1, quote: 'Harla understood our vision before we could fully articulate it. The result exceeded everything we imagined.', authorName: 'Olivia Carpenter', designation: 'Private Homeowner', authorImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80', rating: 5 },
+  { id: 2, quote: 'Meticulous attention to detail and an unwavering commitment to quality. A truly exceptional partnership.', authorName: 'David Laurent', designation: 'Hotel Developer', authorImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80', rating: 5 },
+];
+
+const blogPosts = [
+  { id: 1, title: 'The Art of Boutique Hotel Design', slug: 'boutique-hotel-design', featuredImage: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80', publishedAt: '2024-07-15', author: 'Harla', commentCount: 1, excerpt: 'How thoughtful spatial planning transforms hospitality experiences.' },
+  { id: 2, title: 'Material Palettes That Endure', slug: 'material-palettes', featuredImage: 'https://images.unsplash.com/photo-1616137466211-f736a1f8c7be?w=800&q=80', publishedAt: '2024-07-15', author: 'Harla', commentCount: 1, excerpt: 'Choosing finishes that age gracefully and tell a richer story over time.' },
+  { id: 3, title: 'Designing for Natural Light', slug: 'designing-natural-light', featuredImage: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80', publishedAt: '2024-07-15', author: 'Harla', commentCount: 1, excerpt: 'Why orientation and aperture are the most important design decisions.' },
+];
+
+export default function Home2Page() {
+  return (
+    <>
+      <HeroCarousel slides={slides} />
+      <ServiceCarousel services={services} />
+      <TestimonialsSlider testimonials={testimonials} />
+      <CtaNewsletter />
+      <BlogPreview posts={blogPosts} />
+    </>
+  );
+}
