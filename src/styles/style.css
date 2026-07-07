@@ -7630,8 +7630,10 @@ blockquote cite.name {
 .copyright-area {
   margin-bottom: 0;
   margin-top: auto;
-  text-align: right;
+  text-align: left;
   padding-right: 16px;
+  display: flex;
+  align-items: flex-end;
 }
 
 .copyright-area a {

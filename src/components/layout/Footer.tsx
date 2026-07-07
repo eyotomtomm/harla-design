@@ -50,7 +50,7 @@ export default function Footer({ settings }: FooterProps) {
         <div className="container">
           <div className="row">
             <div className="copyright-area col-sm-12 col-md-4 col-lg-6">
-              {s.copyrightText || '© Copyright Harla 2025. All rights reserved.'}
+              {s.copyrightText || '© Copyright Harla 2026. All rights reserved.'}
             </div>
 
             <div className="col-xs-12 col-sm-8 col-md-4 col-lg-3">
