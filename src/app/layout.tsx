@@ -14,6 +14,7 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
 });
 
+
 export const metadata: Metadata = {
   title: 'Harla - Architecture and Interiors',
   description: 'The greatest architecture & interior design company, best in its industry.',

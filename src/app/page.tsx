@@ -8,13 +8,6 @@ import TestimonialsSlider from '@/components/home/TestimonialsSlider';
 import CtaNewsletter from '@/components/home/CtaNewsletter';
 import BlogPreview from '@/components/home/BlogPreview';
 
-const defaultSlides = [
-  { id: 1, rotateWord: 'Design', description: 'Where vision meets structure.', image: '/images/projects/abay-bank/lobby-1.jpg', linkUrl: '/projects/abay-bank' },
-  { id: 2, rotateWord: 'Refine', description: 'Crafting spaces that inspire.', image: '/images/projects/anbessa-apartment/office-lounge.png', linkUrl: '/projects/anbessa-apartment' },
-  { id: 3, rotateWord: 'Create', description: 'Architecture with intention.', image: '/images/projects/lobby-design/lobby-a.jpg', linkUrl: '/projects/lobby-design' },
-  { id: 4, rotateWord: 'Dream', description: 'Elevating the way you live.', image: '/images/projects/abay-bank/lobby-2.jpg', linkUrl: '/projects/abay-bank' },
-  { id: 5, rotateWord: 'Build', description: 'Timeless design, built to last.', image: '/images/projects/anbessa-apartment/meeting-room.png', linkUrl: '/projects/anbessa-apartment' },
-];
 
 const defaultAboutTabs = [
   { id: 1, tabLabel: 'WHO WE ARE', paragraph1: 'Harla is an architecture and interior design consultancy delivering thoughtful, detail-driven spaces across residential, hospitality, and commercial sectors.', paragraph2: 'We partner with clients who value craft, clarity, and enduring quality in every project we undertake.', bigImage: '/images/projects/lobby-design/lobby-b.jpg', smallImage: '/images/projects/anbessa-apartment/waiting-area.png' },
@@ -74,7 +67,6 @@ const defaultBlogPosts = [
 ];
 
 export default async function HomePage() {
-  let slides = defaultSlides;
   let aboutTabs = defaultAboutTabs;
   let services = defaultServices;
   let archProjects = defaultArchProjects;
@@ -85,8 +77,6 @@ export default async function HomePage() {
 
   try {
     const prisma = (await import('@/lib/prisma')).default;
-    const dbSlides = await prisma.heroSlide.findMany({ where: { variant: 'home1' }, orderBy: { sortOrder: 'asc' } });
-    if (dbSlides.length > 0) slides = dbSlides;
     const dbTabs = await prisma.aboutTab.findMany({ orderBy: { sortOrder: 'asc' } });
     if (dbTabs.length > 0) aboutTabs = dbTabs.map(t => ({ ...t, paragraph2: t.paragraph2 || '' }));
     const dbServices = await prisma.service.findMany({ where: { image: { not: null } }, orderBy: { sortOrder: 'asc' } });
@@ -107,7 +97,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroCarousel slides={slides} />
+      <HeroCarousel />
       <AboutTabs tabs={aboutTabs} />
       <ServiceCarousel services={services} />
       <ArchitectureProjects projects={archProjects} />

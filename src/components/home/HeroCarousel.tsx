@@ -1,54 +1,54 @@
 'use client';
-import { Carousel } from 'react-bootstrap';
 import Link from 'next/link';
-import AnimateOnScroll from '@/components/shared/AnimateOnScroll';
 
-interface HeroSlide {
-  id: number;
-  rotateWord: string;
-  description: string;
-  image: string;
-  linkUrl: string;
-}
-
-export default function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
+export default function HeroCarousel() {
   return (
-    <section className="hero-area mt-92 pb-64 black-120-bg">
-      <div className="container pb-64">
-        <Carousel id="recipeCarousel" indicators controls={false}>
-          {slides.map((slide, i) => (
-            <Carousel.Item key={slide.id}>
-              <div className="row">
-                <div className="d-flex">
-                  <div className="col-lg-2">
-                    <h1 className="rotate-hero">{slide.rotateWord}</h1>
-                  </div>
-                  <div className="col-lg-10 d-flex hero-text-img">
-                    <div className="hero-content">
-                      <div>
-                        <h6>{slide.description}</h6>
-                        <Link href={slide.linkUrl} className="hero-btn">
-                          Read More
-                          <span className="btn-icon">
-                            <span className="circle"></span>
-                            <span className="dot"></span>
-                            <span className="line"></span>
-                            <span className="fa fa-long-arrow-right"></span>
-                          </span>
-                        </Link>
-                      </div>
-                    </div>
-                    <div className="bg-img">
-                      <Link href={slide.linkUrl}>
-                        <img className="hero-img" src={slide.image} alt={slide.rotateWord} />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Carousel.Item>
-          ))}
-        </Carousel>
+    <section className="hero-nujuma">
+      <div className="hero-nujuma-bg">
+        <img
+          src="/images/projects/lobby-design/lobby-c.jpg"
+          alt=""
+        />
+        <div className="hero-nujuma-overlay" />
+      </div>
+
+      <div className="container hero-nujuma-content">
+        <div className="hero-nujuma-inner">
+          <div className="hero-nujuma-left">
+            <p className="hero-nujuma-subtitle">
+              Built Environment Strategist &nbsp;&middot;&nbsp; Smart Cities Advisor
+            </p>
+            <h1 className="hero-nujuma-heading">
+              Understanding
+              <br />
+              how people,
+              <br />
+              places, and
+              <br />
+              technology
+              <br />
+              <em>intersect.</em>
+            </h1>
+          </div>
+
+          <div className="hero-nujuma-right">
+            <Link href="/projects" className="hero-nujuma-btn-services">
+              View Services
+            </Link>
+            <Link href="/contact" className="hero-nujuma-btn-touch">
+              Get In Touch
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="hero-nujuma-bottom">
+        <div className="container">
+          <p>
+            An advisory focused on strategy, design and delivery and user experience
+            &mdash; operating across Africa and the GCC
+          </p>
+        </div>
       </div>
     </section>
   );

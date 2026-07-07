@@ -4,12 +4,6 @@ import TestimonialsSlider from '@/components/home/TestimonialsSlider';
 import CtaNewsletter from '@/components/home/CtaNewsletter';
 import BlogPreview from '@/components/home/BlogPreview';
 
-const slides = [
-  { id: 1, rotateWord: 'Design', description: 'Where vision meets structure.', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80', linkUrl: '/projects/house-design' },
-  { id: 2, rotateWord: 'Refine', description: 'Crafting spaces that inspire.', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80', linkUrl: '/projects/house-design' },
-  { id: 3, rotateWord: 'Dream', description: 'Elevating the way you live.', image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80', linkUrl: '/projects/house-design' },
-];
-
 const services = [
   { id: 1, title: 'ART DIRECTION', description: 'Curating the visual identity of every space we design.', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80' },
   { id: 2, title: 'INTERIOR DESIGN', description: 'Interiors that feel intentional, refined, and lived-in.', image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80' },
@@ -30,7 +24,7 @@ const blogPosts = [
 export default function Home2Page() {
   return (
     <>
-      <HeroCarousel slides={slides} />
+      <HeroCarousel />
       <ServiceCarousel services={services} />
       <TestimonialsSlider testimonials={testimonials} />
       <CtaNewsletter />
