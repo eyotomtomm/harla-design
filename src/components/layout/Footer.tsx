@@ -50,7 +50,7 @@ export default function Footer({ settings }: FooterProps) {
         <div className="container">
           <div className="row">
             <div className="copyright-area col-sm-12 col-md-4 col-lg-6">
-              {s.copyrightText || '© Copyright Harla 2024. All rights reserved.'}
+              {s.copyrightText || '© Copyright Harla 2025. All rights reserved.'}
             </div>
 
             <div className="col-xs-12 col-sm-8 col-md-4 col-lg-3">
@@ -60,8 +60,8 @@ export default function Footer({ settings }: FooterProps) {
                     <h4 className="h4-rotate">CONTACT</h4>
                   </div>
                   <div className="right info">
-                    <p>{s.contactAddress || '****  ****'}<br />{s.contactAddress2 || '****  ****'}</p>
-                    <p><a href={`tel:${(s.contactPhone || '+** *** *** ****').replace(/\s/g, '')}`}>{s.contactPhone || '+** *** *** ****'}</a></p>
+                    <p>{s.contactAddress || 'SS Tower, 63rd Street'}<br />{s.contactAddress2 || 'Al Barsha South 3, Dubai UAE'}</p>
+                    <p><a href={`tel:${(s.contactPhone || '+971 523 798 567').replace(/\s/g, '')}`}>{s.contactPhone || '+971 523 798 567'}</a></p>
                     <p><a href={`mailto:${s.contactEmail || 'contact@harladesign.com'}`}>{s.contactEmail || 'contact@harladesign.com'}</a></p>
                     <div className="footer-social">
                       <span>Socials:</span>
