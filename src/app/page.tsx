@@ -9,13 +9,6 @@ import CtaNewsletter from '@/components/home/CtaNewsletter';
 import BlogPreview from '@/components/home/BlogPreview';
 
 
-const defaultAboutTabs = [
-  { id: 1, tabLabel: 'WHO WE ARE', paragraph1: 'Harla is an architecture and interior design consultancy delivering thoughtful, detail-driven spaces across residential, hospitality, and commercial sectors.', paragraph2: 'We partner with clients who value craft, clarity, and enduring quality in every project we undertake.', bigImage: '/images/projects/lobby-design/lobby-b.jpg', smallImage: '/images/projects/anbessa-apartment/waiting-area.png' },
-  { id: 2, tabLabel: 'OUR MISSION', paragraph1: 'To transform how people experience the spaces they inhabit — through design that balances aesthetics, function, and emotion.', paragraph2: 'Every project begins with listening and ends with a space that feels unmistakably right.', bigImage: '/images/projects/abay-bank/lobby-6.jpg', smallImage: '/images/projects/abay-bank/lobby-2.jpg' },
-  { id: 3, tabLabel: 'OUR VISION', paragraph1: 'To be the standard for design consultancy — where every structure tells a story and every interior holds meaning.', paragraph2: 'We envision a world where architecture serves people, not the other way around.', bigImage: '/images/projects/lobby-design/lobby-c.jpg', smallImage: '/images/projects/anbessa-apartment/office-waiting.png' },
-];
-
-
 const defaultArchProjects = [
   { id: 1, title: 'ABAY BANK HQ', categories: ['ARCHITECTURE', 'COMMERCIAL'], description: 'A double-height lobby where natural stone and light define arrival.', description2: 'Marble reception, timber paneling, and seamless spatial flow.', image: '/images/projects/abay-bank/lobby-1.jpg', linkUrl: '/projects/abay-bank', isFullWidth: true },
   { id: 2, title: 'ANBESSA OFFICE', categories: ['INTERIOR'], description: 'Executive floors designed for both focus and hospitality.', image: '/images/projects/anbessa-apartment/office-waiting.png', linkUrl: '/projects/anbessa-apartment', isFullWidth: false },
@@ -47,7 +40,6 @@ const defaultBlogPosts = [
 ];
 
 export default async function HomePage() {
-  let aboutTabs = defaultAboutTabs;
   let archProjects = defaultArchProjects;
   let workSteps = defaultWorkSteps;
   let testimonials = defaultTestimonials;
@@ -55,8 +47,6 @@ export default async function HomePage() {
 
   try {
     const prisma = (await import('@/lib/prisma')).default;
-    const dbTabs = await prisma.aboutTab.findMany({ orderBy: { sortOrder: 'asc' } });
-    if (dbTabs.length > 0) aboutTabs = dbTabs.map(t => ({ ...t, paragraph2: t.paragraph2 || '' }));
     const dbSteps = await prisma.workProcessStep.findMany({ orderBy: { stepNumber: 'asc' } });
     if (dbSteps.length > 0) workSteps = dbSteps;
     const dbTestimonials = await prisma.testimonial.findMany();
@@ -72,7 +62,7 @@ export default async function HomePage() {
   return (
     <>
       <HeroCarousel />
-      <AboutTabs tabs={aboutTabs} />
+      <AboutTabs />
       <ServiceCarousel />
       <ApproachGrid />
       <ArchitectureProjects projects={archProjects} />

@@ -4003,296 +4003,265 @@ header form.search-form button{
 /*******************************************************/
 /******************** ## About Area ********************/
 /*******************************************************/
-.light-mode .about-area{
-  background: var(--black-10);
-}
 
-.about-area .nav-tabs{
-  border-bottom: none;
-  width: 100%;
-}
-
-.about-area .nav-tabs .nav-link{
-  padding: 0 15px;
-}
-
-.about-area .nav-tabs li:first-child .nav-link{
-  padding-left: 0!important;
-}
-
-.about-area .nav-tabs li:last-child .nav-link{
-  padding-right: 0!important;
-}
-
-.about-area .nav-tabs .nav-item:has(.nav-link.active){
-  height: 100%;
-  max-height: 856px;
-}
-
-.about-area .nav-tabs .nav-item .text{
-  width: 37%;
-  max-width: 330px;
-  height: 100%;
-  max-height: 856px;
-  padding-right: 30px;
-  text-align: left;
-}
-
-.about-area .nav-tabs .nav-item .big-image{
-  width: 100%;
-  max-width: 570px;
-  height: 856px;
-  max-height: 856px;
+/* --- About Harla (Vision / Mission / About + Pillars) --- */
+.about-harla {
   position: relative;
-  object-fit: cover;
 }
 
-.about-area .nav-tabs .nav-item .small-image{
-  width: 100%;
-  max-width: 210px;
-  height: 856px;
-  max-height: 856px;
-  object-fit: cover;
+.about-harla-header {
+  margin-bottom: 64px;
 }
 
-.about-area .nav-tabs .nav-item:has(.nav-link) .text,
-.about-area .nav-tabs .nav-item:has(.nav-link) .big-image{
-  display: none;
+.about-harla-header h2 {
+  color: #fff !important;
+  margin-bottom: 0;
 }
 
-.about-area .nav-tabs .nav-item:has(.nav-link.active) .small-image{
-  display: none;
+.about-harla-header h2 em {
+  color: #C9A84C;
+  font-style: italic;
 }
 
-.about-area .nav-tabs .nav-item:has(.nav-link.active) .text,
-.about-area .nav-tabs .nav-item:has(.nav-link.active) .big-image{
-  display: block;
-}
-
-.about-area .nav-tabs .nav-item.show .nav-link, 
-.about-area .nav-tabs .nav-link.active{
-  background-color: unset;
-  border-color: unset;
-  color: var(--black-30);
-}
-
-.about-area  .nav-tabs .nav-link{
-  border: unset;
-  color: var(--black-30);
-}
-
-.light-mode .about-area .nav-tabs .nav-item.show .nav-link, 
-.light-mode .about-area .nav-tabs .nav-link.active,
-.light-mode .about-area  .nav-tabs .nav-link{
-  color: var(--black-90);
-}
-
-.about-area .h4-rotate{
-  transform: rotate(-90deg);
-  width: 350px;
-  position: absolute;
-  height: 45.6px;
-  left: -159px;
-  top: 151px;
-  text-align: end;
-}
-
-.light-mode .about-area .h4-rotate{
-  color: var(--black-100);
-}
-
-.about-area .text{
-  align-self: flex-end;
-}
-
-.about-area .small-image{
-  cursor: pointer;
-}
-
-.about-area .about-content{
-  position: relative;
+/* Tab strip */
+.about-harla-tabs {
   display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--black-80);
+  margin-bottom: 48px;
 }
 
-.p-rotate{
-  transform: rotate(-90deg);
-  background-color: var(--black-100);
-  color:var(--heading-color);
-  padding: 8px 16px;
-  width: fit-content;
+.about-harla-tab {
+  background: none;
+  border: none;
+  color: var(--black-50);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 16px 32px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.about-harla-tab:first-child {
+  padding-left: 0;
+}
+
+.about-harla-tab:hover {
+  color: var(--black-30);
+}
+
+.about-harla-tab.active {
+  color: #C9A84C;
+}
+
+.about-harla-tab.active::after {
+  content: '';
   position: absolute;
-  top: 66px;
-  right: -36px;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #C9A84C;
 }
 
-.about-content .number{
-  position: absolute;
-  bottom: -12px;
-  right: 14px;
+.about-harla-tab:first-child.active::after {
+  left: 0;
 }
 
-.light-mode .about-content .number{
-  color: white;
+.about-harla-tab-num {
+  color: #C9A84C;
+  margin-right: 8px;
+  font-weight: 400;
 }
 
-@media(min-width: 992px){
-  .light-mode .about-content .number{
-    text-shadow: 2px 0 white;
-  }
+/* Tab content */
+.about-harla-content {
+  margin-bottom: 96px;
+  max-width: 900px;
 }
 
-.about-area .big-image {
-  transition: transform 1.5s ease;
+.about-harla-content p,
+.about-harla-single {
+  color: var(--black-30);
+  font-size: 18px;
+  line-height: 1.8;
 }
 
-.about-area .nav-tabs .nav-item:has(.nav-link.active) .big-image {
-  transform: transform 1.5s ease;
+.about-harla-single {
+  font-size: 22px;
+  line-height: 1.7;
+  color: var(--black-20);
 }
 
-@media only screen and (max-width: 1420px) {
-  .about-area .nav-tabs .nav-item .text{
-    max-width: 310px;
-  }
-
-  .about-area .nav-tabs .nav-item .big-image{
-    max-width: 525px;
-    object-fit: cover;
-  }
-
-  .about-area .nav-tabs .nav-item .small-image{
-    max-width: 110px;
-    height: 788px;
-    object-fit: cover;
-  }
-
+.about-harla-paragraphs p {
+  margin-bottom: 24px;
 }
 
-@media only screen and (max-width: 1199px) {
-  .about-area .h4-rotate{
-    transform: unset;
-    position: unset;
-    text-align: left;
-    height: auto;
-    width: auto;
-  }
-
-  .about-area .nav-tabs .nav-item .text{
-    width: 48%;
-  }
-
-  .about-area .nav-tabs .nav-item .big-image{
-    max-width: 340px;
-    object-fit: cover;
-  }
-
-  .about-area .nav-tabs .nav-item .small-image{
-    height: 521px;
-    object-fit: cover;
-  }
+.about-harla-paragraphs p:last-child {
+  margin-bottom: 0;
 }
 
+/* Pillars */
+.about-harla-pillars {
+  border-top: 1px solid var(--black-80);
+  padding-top: 64px;
+}
+
+.about-harla-pillars-header {
+  margin-bottom: 48px;
+}
+
+.about-harla-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.about-harla-pillar {
+  padding: 32px 24px;
+  border-left: 1px solid var(--black-80);
+}
+
+.about-harla-pillar:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.about-harla-pillar-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  color: #C9A84C;
+  font-size: 24px;
+}
+
+.about-harla-pillar h5 {
+  color: #fff !important;
+  margin-bottom: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+.about-harla-pillar p {
+  color: var(--black-30);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* Light mode */
+.light-mode .about-harla {
+  background: var(--black-100) !important;
+}
+
+.light-mode .about-harla-header h2,
+.light-mode .about-harla-pillar h5 {
+  color: #fff !important;
+}
+
+.light-mode .about-harla-tab {
+  color: var(--black-50);
+}
+
+.light-mode .about-harla-tab.active {
+  color: #C9A84C;
+}
+
+.light-mode .about-harla-content p,
+.light-mode .about-harla-single,
+.light-mode .about-harla-pillar p {
+  color: var(--black-30);
+}
+
+.light-mode .about-harla .sub-title {
+  color: #C9A84C !important;
+}
+
+/* Responsive */
 @media only screen and (max-width: 991px) {
-  
-  .about-area .nav-tabs .nav-item .text {
-    width: 52%;
+  .about-harla-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
   }
 
-  .about-area .nav-tabs .nav-item .big-image {
-    max-width: 286px;
-    object-fit: cover;
+  .about-harla-pillar:nth-child(3) {
+    border-left: none;
+    padding-left: 0;
   }
 
-  .about-area .nav-tabs .nav-item .small-image{
-    width: 40px;
-    height: 521px;
-    object-fit: cover;
-  }
-
-  .about-style-2 .left{
+  .about-harla-content {
     margin-bottom: 64px;
   }
 
-  .about-area .nav-tabs .nav-link{
-    padding: 0 5px;
+  .about-harla-single {
+    font-size: 20px;
   }
-
-  .about-content .number{
-    right: 32px;
-  }
-
-  .about-area .p-rotate {
-    right: -18px;
-  }
-
-  .about-area .nav-link:not(.active) .p-rotate,
-  .about-area .nav-link:not(.active) .number{
-    display: none;
-  }
-
 }
 
 @media only screen and (max-width: 767px) {
-  .about-area .nav-tabs .nav-item:has(.nav-link) .text, 
-  .about-area .nav-tabs .nav-item:has(.nav-link) .big-image {
-    display: block;
+  .about-harla-tabs {
+    flex-wrap: wrap;
+    gap: 0;
   }
 
-  .about-area .nav-tabs .nav-item:has(.nav-link) .small-image{
-    display: none;
+  .about-harla-tab {
+    padding: 12px 20px;
+    font-size: 13px;
   }
 
-  .about-area .nav-link:not(.active) .p-rotate,
-  .about-area .nav-link:not(.active) .number{
-    display: inherit;
+  .about-harla-tab:first-child {
+    padding-left: 0;
   }
 
-  .about-area button:not(:disabled){
-    cursor: unset;
+  .about-harla-single {
+    font-size: 18px;
   }
 
-  .about-area .nav-tabs .nav-item:has(.nav-link.active){
-    height: auto;
+  .about-harla-content p,
+  .about-harla-single {
+    font-size: 16px;
   }
-
-  .about-area .nav-tabs .nav-item:not(:last-child){
-    margin-bottom: 64px;
-  }
-
-  .about-content .number{
-    bottom: 0;
-  }
-
-  .about-area .h4-rotate{
-    margin-bottom: 16px;
-  }
-
 }
 
 @media only screen and (max-width: 576px) {
-  .about-area .nav-tabs .nav-item .text {
-    width: 100%;
-    max-width: 100%;
+  .about-harla-pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .about-harla-pillar {
+    border-left: none;
+    padding-left: 0;
     padding-right: 0;
-    margin-bottom: 25px;
+    border-bottom: 1px solid var(--black-80);
+    padding-bottom: 32px;
+    margin-bottom: 0;
   }
 
-  .about-area .nav-tabs .nav-item:has(.nav-link) .big-image{
-    max-width: 100%;
+  .about-harla-pillar:last-child {
+    border-bottom: none;
   }
 
-  .about-area .nav-tabs .nav-item:has(.nav-link.active){
-    max-height: unset;
+  .about-harla-tab {
+    padding: 10px 16px;
+    font-size: 12px;
+    letter-spacing: 1px;
   }
+}
 
-  .about-area .about-content{
-    display: block;
-  }
-
-  .about-area .nav-link:not(.active) .p-rotate,
-  .about-area .nav-link:not(.active) .number,
-  .about-area .nav-link .p-rotate,
-  .about-area .nav-link .number{
-    display: none;
+/* Keep about-style-2 for the /about page */
+@media only screen and (max-width: 991px) {
+  .about-style-2 .left{
+    margin-bottom: 64px;
   }
 }
 
