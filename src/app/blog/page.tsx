@@ -1,5 +1,17 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import PageBanner from '@/components/layout/PageBanner';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: 'Insights on built environment strategy, design accountability, and urban development across Africa and the GCC.',
+  alternates: { canonical: '/blog' },
+  openGraph: {
+    title: 'Blog | Harla',
+    description: 'Insights on built environment strategy, design accountability, and urban development.',
+    url: 'https://harladesign.com/blog',
+  },
+};
 
 const blogPosts = [
   {
