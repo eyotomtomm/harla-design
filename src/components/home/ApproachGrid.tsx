@@ -44,7 +44,7 @@ const approaches = [
       'A consistent, public voice on the future of cities in Africa and the GCC — building recognition before the brief lands.',
     link: '/blog',
     extraLinks: [
-      { label: 'Podcast', href: 'https://open.spotify.com', icon: 'fab fa-spotify' },
+      { label: 'Podcast', href: 'https://open.spotify.com/show/033jiFuYnZa19SQaeDLVtX', icon: 'fab fa-spotify' },
       { label: 'Blog', href: '/blog', icon: 'fas fa-pen-nib' },
     ],
   },

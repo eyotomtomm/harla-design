@@ -65,10 +65,9 @@ export default function Footer({ settings }: FooterProps) {
                     <p><a href={`mailto:${s.contactEmail || 'contact@harladesign.com'}`}>{s.contactEmail || 'contact@harladesign.com'}</a></p>
                     <div className="footer-social">
                       <span>Socials:</span>
-                      <a href={s.socialDribbble || '#'}><i className="fab fa-dribbble"></i></a>
-                      <a href={s.socialFacebook || '#'}><i className="fab fa-facebook-f"></i></a>
-                      <a href={s.socialInstagram || '#'}><i className="fab fa-instagram"></i></a>
-                      <a href={s.socialLinkedin || '#'}><i className="fab fa-linkedin"></i></a>
+                      <a href="https://www.instagram.com/harla_designs" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
+                      <a href="https://open.spotify.com/show/033jiFuYnZa19SQaeDLVtX" target="_blank" rel="noopener noreferrer"><i className="fab fa-spotify"></i></a>
+                      <a href="https://beneatheconcrete.substack.com" target="_blank" rel="noopener noreferrer"><i className="fas fa-newspaper"></i></a>
                     </div>
                   </div>
                 </div>
