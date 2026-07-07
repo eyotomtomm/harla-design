@@ -16,8 +16,8 @@ const montserrat = Montserrat({
 
 
 export const metadata: Metadata = {
-  title: 'Harla - Architecture and Interiors',
-  description: 'The greatest architecture & interior design company, best in its industry.',
+  title: 'Harla | Built Environment Strategy & Design',
+  description: 'An advisory focused on strategy, design, delivery and user experience — operating across Africa and the GCC.',
   icons: { icon: '/images/logos/favicon.png' },
 };
 
