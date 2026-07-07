@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', organisation: '', email: '', message: '' });
   const [status, setStatus] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -17,7 +17,7 @@ export default function ContactPage() {
       });
       if (res.ok) {
         setStatus('sent');
-        setForm({ name: '', email: '', message: '' });
+        setForm({ name: '', organisation: '', email: '', message: '' });
       } else {
         setStatus('error');
       }
@@ -27,92 +27,92 @@ export default function ContactPage() {
   };
 
   return (
-    <>
-      <section className="contact-banner banner-area">
-        <div className="container-fluid">
-          <div className="contact-title row align-items-center text-center justify-content-between py-128">
-            <h1>CONTACT</h1>
-          </div>
-        </div>
-      </section>
+    <section className="contact-nujuma">
+      <div className="container">
+        <div className="contact-nujuma-grid">
+          <div className="contact-nujuma-left">
+            <span className="contact-nujuma-label">Contact</span>
+            <h2 className="contact-nujuma-heading">
+              Begin a<br />
+              <em>conversation.</em>
+            </h2>
+            <p className="contact-nujuma-desc">
+              Whether you are a developer, public authority, institution, or
+              investor — if the intersection of people, place, and technology
+              matters to your work, let&apos;s talk.
+            </p>
 
-      <section className="contact-area">
-        <div className="container">
-          <div className="row justify-content-between contact-content">
-            <div className="col-lg-9 ct-form">
-              <form className="contact-form rmt-55 contactForm" onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Name"
-                    required
-                    value={form.name}
-                    onChange={e => setForm(prev => ({ ...prev, name: e.target.value }))}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Email"
-                    required
-                    value={form.email}
-                    onChange={e => setForm(prev => ({ ...prev, email: e.target.value }))}
-                  />
-                </div>
-                <div className="form-group">
-                  <textarea
-                    className="form-control"
-                    rows={9}
-                    placeholder="Message"
-                    required
-                    value={form.message}
-                    onChange={e => setForm(prev => ({ ...prev, message: e.target.value }))}
-                  ></textarea>
-                </div>
-                <div className="form-group mb-0">
-                  <button type="submit" className="contact-btn" disabled={status === 'sending'}>
-                    {status === 'sending' ? 'Sending...' : status === 'sent' ? 'Message Sent!' : 'Send a message'}
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div className="contact-info">
-              <div className="section-title mb-32">
-                <h5 className="mb-32">Basic information</h5>
-                <p>Get in touch with us to learn more about interior or architecture design. We&apos;d love to hear from you, here&apos;s how you can reach us...</p>
-              </div>
-              <div className="contact-info-item">
-                <i className="fas fa-phone-volume"></i> <span>+** *** *** ****</span>
-              </div>
-              <div className="contact-info-item">
-                <i className="fas fa-envelope"></i> <span className="text">****@****.com</span>
-              </div>
-              <div className="contact-info-item">
-                <i className="fas fa-map-marker-alt"></i> <span className="text">****  ****</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            <div className="contact-nujuma-divider" />
 
-      <section className="map-area">
-        <div className="container-fluid">
-          <div className="contact-page-map">
-            <div className="our-location">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d96776.56071496992!2d-74.02420878160657!3d40.71212692665102!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1676287097391!5m2!1sen!2sbd"
-                style={{ border: 0, width: '100%' }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Harla office location"
-              ></iframe>
+            <div className="contact-nujuma-meta">
+              <span className="contact-nujuma-meta-label">Based In</span>
+              <p>Available across Africa &amp; the GCC</p>
+            </div>
+
+            <div className="contact-nujuma-divider" />
+
+            <div className="contact-nujuma-meta">
+              <span className="contact-nujuma-meta-label">Engagements</span>
+              <p>Advisory retainers &middot; Project mandates &middot; Speaking</p>
+            </div>
+
+            <div className="contact-nujuma-divider" />
+
+            <div className="contact-nujuma-meta">
+              <span className="contact-nujuma-meta-label">Email</span>
+              <p><a href="mailto:contact@harladesign.com">contact@harladesign.com</a></p>
             </div>
           </div>
+
+          <div className="contact-nujuma-right">
+            <form onSubmit={handleSubmit}>
+              <div className="contact-nujuma-field">
+                <label>Full Name *</label>
+                <input
+                  type="text"
+                  placeholder="Your full name"
+                  required
+                  value={form.name}
+                  onChange={e => setForm(prev => ({ ...prev, name: e.target.value }))}
+                />
+              </div>
+              <div className="contact-nujuma-field">
+                <label>Organisation</label>
+                <input
+                  type="text"
+                  placeholder="Your organisation"
+                  value={form.organisation}
+                  onChange={e => setForm(prev => ({ ...prev, organisation: e.target.value }))}
+                />
+              </div>
+              <div className="contact-nujuma-field">
+                <label>Email Address *</label>
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  required
+                  value={form.email}
+                  onChange={e => setForm(prev => ({ ...prev, email: e.target.value }))}
+                />
+              </div>
+              <div className="contact-nujuma-field">
+                <label>Message *</label>
+                <textarea
+                  rows={4}
+                  placeholder="Tell me about your project or enquiry"
+                  required
+                  value={form.message}
+                  onChange={e => setForm(prev => ({ ...prev, message: e.target.value }))}
+                ></textarea>
+              </div>
+              <button type="submit" className="contact-nujuma-submit" disabled={status === 'sending'}>
+                {status === 'sending' ? 'Sending...' : status === 'sent' ? 'Message Sent!' : 'Send Message'}
+                <span className="contact-nujuma-submit-arrow">&rarr;</span>
+              </button>
+            </form>
+          </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

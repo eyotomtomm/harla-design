@@ -1,8 +1,8 @@
 import HeroCarousel from '@/components/home/HeroCarousel';
 import AboutTabs from '@/components/home/AboutTabs';
 import ServiceCarousel from '@/components/home/ServiceCarousel';
+import ApproachGrid from '@/components/home/ApproachGrid';
 import ArchitectureProjects from '@/components/home/ArchitectureProjects';
-import InteriorProjects from '@/components/home/InteriorProjects';
 import WorkProcessTimeline from '@/components/home/WorkProcessTimeline';
 import TestimonialsSlider from '@/components/home/TestimonialsSlider';
 import CtaNewsletter from '@/components/home/CtaNewsletter';
@@ -15,32 +15,12 @@ const defaultAboutTabs = [
   { id: 3, tabLabel: 'OUR VISION', paragraph1: 'To be the standard for design consultancy — where every structure tells a story and every interior holds meaning.', paragraph2: 'We envision a world where architecture serves people, not the other way around.', bigImage: '/images/projects/lobby-design/lobby-c.jpg', smallImage: '/images/projects/anbessa-apartment/office-waiting.png' },
 ];
 
-const defaultServices = [
-  { id: 1, title: 'ART DIRECTION', description: 'Curating the visual identity of every space we design.', image: '/images/projects/lobby-design/lobby-a.jpg' },
-  { id: 2, title: 'INTERIOR DESIGN', description: 'Interiors that feel intentional, refined, and lived-in.', image: '/images/projects/anbessa-apartment/office-lounge.png' },
-  { id: 3, title: 'ARCHITECTURE', description: 'Structural design rooted in context and craft.', image: '/images/projects/abay-bank/lobby-3.jpg' },
-  { id: 4, title: 'COMMERCIAL', description: 'Functional spaces designed for performance and atmosphere.', image: '/images/projects/anbessa-apartment/meeting-room.png' },
-  { id: 5, title: 'CONSULTATION', description: 'Strategic guidance from concept to completion.', image: '/images/projects/anbessa-apartment/waiting-area.png' },
-];
 
 const defaultArchProjects = [
   { id: 1, title: 'ABAY BANK HQ', categories: ['ARCHITECTURE', 'COMMERCIAL'], description: 'A double-height lobby where natural stone and light define arrival.', description2: 'Marble reception, timber paneling, and seamless spatial flow.', image: '/images/projects/abay-bank/lobby-1.jpg', linkUrl: '/projects/abay-bank', isFullWidth: true },
   { id: 2, title: 'ANBESSA OFFICE', categories: ['INTERIOR'], description: 'Executive floors designed for both focus and hospitality.', image: '/images/projects/anbessa-apartment/office-waiting.png', linkUrl: '/projects/anbessa-apartment', isFullWidth: false },
   { id: 3, title: 'LOBBY CONCEPT', categories: ['INTERIOR'], description: 'Sculptural chandelier and organic forms in a grand atrium.', image: '/images/projects/lobby-design/lobby-b.jpg', linkUrl: '/projects/lobby-design', isFullWidth: false },
   { id: 4, title: 'ANBESSA APARTMENT', categories: ['DESIGN'], description: 'Residential amenities from coffee lounge to private gym.', description2: 'Every communal space treated with the same care as the units above.', image: '/images/projects/anbessa-apartment/coffee-area.png', linkUrl: '/projects/anbessa-apartment', isFullWidth: true },
-];
-
-const defaultInteriorProjects = [
-  { id: 1, subtitle: 'LOBBY', title: 'Abay Bank Grand Lobby', description: 'Double-height stone and timber with natural light flooding in.', image: '/images/projects/abay-bank/lobby-1.jpg', linkUrl: '/projects/abay-bank', category: 'ALL' },
-  { id: 2, subtitle: 'RECEPTION', title: 'Abay Bank Reception', description: 'Marble reception desk with illuminated timber paneling.', image: '/images/projects/abay-bank/lobby-6.jpg', linkUrl: '/projects/abay-bank', category: 'ALL' },
-  { id: 3, subtitle: 'WAITING AREA', title: 'Anbessa 4th Floor Lounge', description: 'Warm timber screens and soft seating for a refined wait.', image: '/images/projects/anbessa-apartment/waiting-area.png', linkUrl: '/projects/anbessa-apartment', category: 'ALL' },
-  { id: 4, subtitle: 'OFFICE LOUNGE', title: 'Anbessa Executive Suite', description: 'Where work meets warmth — terracotta and navy.', image: '/images/projects/anbessa-apartment/office-lounge.png', linkUrl: '/projects/anbessa-apartment', category: 'ALL' },
-  { id: 5, subtitle: 'MEETING ROOM', title: 'Anbessa Boardroom', description: 'Recessed lighting and clean lines for focused discussion.', image: '/images/projects/anbessa-apartment/meeting-room.png', linkUrl: '/projects/anbessa-apartment', category: 'ALL' },
-  { id: 6, subtitle: 'LOBBY', title: 'Atrium Lobby Concept', description: 'Sculptural chandelier above organic furniture forms.', image: '/images/projects/lobby-design/lobby-b.jpg', linkUrl: '/projects/lobby-design', category: 'HOTEL' },
-  { id: 7, subtitle: 'LOBBY', title: 'Lobby Waterfall View', description: 'Nature art and fluid seating in a soaring atrium.', image: '/images/projects/lobby-design/lobby-c.jpg', linkUrl: '/projects/lobby-design', category: 'HOTEL' },
-  { id: 8, subtitle: 'GYM', title: 'Abay Bank Fitness Center', description: 'Blue accents and industrial wall art in a bright gym.', image: '/images/projects/abay-bank/gym-1.jpg', linkUrl: '/projects/abay-bank', category: 'VILLA' },
-  { id: 9, subtitle: 'COFFEE AREA', title: 'Anbessa Coffee Lounge', description: 'A communal space blending comfort with modern design.', image: '/images/projects/anbessa-apartment/coffee-area.png', linkUrl: '/projects/anbessa-apartment', category: 'RESTAURANT' },
-  { id: 10, subtitle: 'GYM', title: 'Anbessa Private Gym', description: 'Bold red ceiling and lion mural — energy by design.', image: '/images/projects/anbessa-apartment/gym-1.jpg', linkUrl: '/projects/anbessa-apartment', category: 'HOTEL' },
 ];
 
 const defaultWorkSteps = [
@@ -68,9 +48,7 @@ const defaultBlogPosts = [
 
 export default async function HomePage() {
   let aboutTabs = defaultAboutTabs;
-  let services = defaultServices;
   let archProjects = defaultArchProjects;
-  let interiorProjects = defaultInteriorProjects;
   let workSteps = defaultWorkSteps;
   let testimonials = defaultTestimonials;
   let blogPosts = defaultBlogPosts;
@@ -79,10 +57,6 @@ export default async function HomePage() {
     const prisma = (await import('@/lib/prisma')).default;
     const dbTabs = await prisma.aboutTab.findMany({ orderBy: { sortOrder: 'asc' } });
     if (dbTabs.length > 0) aboutTabs = dbTabs.map(t => ({ ...t, paragraph2: t.paragraph2 || '' }));
-    const dbServices = await prisma.service.findMany({ where: { image: { not: null } }, orderBy: { sortOrder: 'asc' } });
-    if (dbServices.length > 0) services = dbServices.map(s => ({ ...s, image: s.image || '' }));
-    const dbInterior = await prisma.interiorProject.findMany({ orderBy: { sortOrder: 'asc' } });
-    if (dbInterior.length > 0) interiorProjects = dbInterior;
     const dbSteps = await prisma.workProcessStep.findMany({ orderBy: { stepNumber: 'asc' } });
     if (dbSteps.length > 0) workSteps = dbSteps;
     const dbTestimonials = await prisma.testimonial.findMany();
@@ -99,9 +73,9 @@ export default async function HomePage() {
     <>
       <HeroCarousel />
       <AboutTabs tabs={aboutTabs} />
-      <ServiceCarousel services={services} />
+      <ServiceCarousel />
+      <ApproachGrid />
       <ArchitectureProjects projects={archProjects} />
-      <InteriorProjects items={interiorProjects} />
       <WorkProcessTimeline steps={workSteps} />
       <TestimonialsSlider testimonials={testimonials} />
       <CtaNewsletter />

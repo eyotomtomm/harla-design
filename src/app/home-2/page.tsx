@@ -4,12 +4,6 @@ import TestimonialsSlider from '@/components/home/TestimonialsSlider';
 import CtaNewsletter from '@/components/home/CtaNewsletter';
 import BlogPreview from '@/components/home/BlogPreview';
 
-const services = [
-  { id: 1, title: 'ART DIRECTION', description: 'Curating the visual identity of every space we design.', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80' },
-  { id: 2, title: 'INTERIOR DESIGN', description: 'Interiors that feel intentional, refined, and lived-in.', image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80' },
-  { id: 3, title: 'ARCHITECTURE', description: 'Structural design rooted in context and craft.', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80' },
-];
-
 const testimonials = [
   { id: 1, quote: 'Harla understood our vision before we could fully articulate it. The result exceeded everything we imagined.', authorName: 'Olivia Carpenter', designation: 'Private Homeowner', authorImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80', rating: 5 },
   { id: 2, quote: 'Meticulous attention to detail and an unwavering commitment to quality. A truly exceptional partnership.', authorName: 'David Laurent', designation: 'Hotel Developer', authorImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80', rating: 5 },
@@ -25,7 +19,7 @@ export default function Home2Page() {
   return (
     <>
       <HeroCarousel />
-      <ServiceCarousel services={services} />
+      <ServiceCarousel />
       <TestimonialsSlider testimonials={testimonials} />
       <CtaNewsletter />
       <BlogPreview posts={blogPosts} />

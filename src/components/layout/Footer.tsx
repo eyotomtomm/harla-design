@@ -62,7 +62,7 @@ export default function Footer({ settings }: FooterProps) {
                   <div className="right info">
                     <p>{s.contactAddress || '****  ****'}<br />{s.contactAddress2 || '****  ****'}</p>
                     <p><a href={`tel:${(s.contactPhone || '+** *** *** ****').replace(/\s/g, '')}`}>{s.contactPhone || '+** *** *** ****'}</a></p>
-                    <p><a href={`mailto:${s.contactEmail || '****@****.com'}`}>{s.contactEmail || '****@****.com'}</a></p>
+                    <p><a href={`mailto:${s.contactEmail || 'contact@harladesign.com'}`}>{s.contactEmail || 'contact@harladesign.com'}</a></p>
                     <div className="footer-social">
                       <span>Socials:</span>
                       <a href={s.socialDribbble || '#'}><i className="fab fa-dribbble"></i></a>
