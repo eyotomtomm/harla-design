@@ -440,6 +440,17 @@ button.load-more{
   color: var(--primary-color);
 }
 
+/* Global gold italic accent for all headings */
+h1 em, h2 em, h3 em, h4 em, h5 em {
+  color: #C9A84C;
+  font-style: italic;
+}
+
+.light-mode h1 em, .light-mode h2 em, .light-mode h3 em,
+.light-mode h4 em, .light-mode h5 em {
+  color: #C9A84C;
+}
+
 .section-title.text-center .bg-text {
   color:var(--heading-color);
 }

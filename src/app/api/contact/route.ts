@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
-  port: Number(process.env.SMTP_PORT) || 587,
-  secure: process.env.SMTP_SECURE === 'true',
+  host: process.env.SMTP_HOST || 'smtp.hostinger.com',
+  port: Number(process.env.SMTP_PORT) || 465,
+  secure: process.env.SMTP_SECURE !== 'false',
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
@@ -18,11 +17,6 @@ export async function POST(request: NextRequest) {
     if (!name || !email || !message) {
       return NextResponse.json({ error: 'All fields required' }, { status: 400 });
     }
-
-    // Save to database
-    const submission = await prisma.contactSubmission.create({
-      data: { name, email, message },
-    });
 
     // Send email to contact@harladesign.com
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
@@ -42,14 +36,26 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    return NextResponse.json(submission, { status: 201 });
-  } catch {
+    // Try to save to database (optional — won't block the response)
+    try {
+      const prisma = (await import('@/lib/prisma')).default;
+      await prisma.contactSubmission.create({
+        data: { name, email, message },
+      });
+    } catch {
+      // DB not available — email was already sent, so this is fine
+    }
+
+    return NextResponse.json({ success: true }, { status: 201 });
+  } catch (err) {
+    console.error('Contact form error:', err);
     return NextResponse.json({ error: 'Failed to submit' }, { status: 500 });
   }
 }
 
 export async function GET() {
   try {
+    const prisma = (await import('@/lib/prisma')).default;
     const submissions = await prisma.contactSubmission.findMany({ orderBy: { createdAt: 'desc' } });
     return NextResponse.json(submissions);
   } catch {

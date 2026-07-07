@@ -5,7 +5,7 @@ export default function Projects05Page() {
   return (
     <>
       <PageBanner
-        title="PROJECTS"
+        title="<em>PROJECTS</em>"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Projects 05' }]}
         backgroundImage="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
       />

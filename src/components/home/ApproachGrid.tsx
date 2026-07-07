@@ -56,7 +56,7 @@ export default function ApproachGrid() {
       <div className="container">
         <div className="section-title text-center mb-96">
           <span className="sub-title mb-16">WHAT WE DO</span>
-          <h2>OUR APPROACH</h2>
+          <h2>OUR <em>APPROACH</em></h2>
         </div>
         <div className="approach-grid-items">
           {approaches.map((item, i) => (

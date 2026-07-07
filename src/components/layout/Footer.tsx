@@ -39,7 +39,7 @@ export default function Footer({ settings }: FooterProps) {
           <div className="col-lg-10">
             <h2>
               {s.footerText1 || (
-                <>Have a <span className="white">project</span> in mind? Let&apos;s <span className="white">build</span> something <span className="white">remarkable</span> together.</>
+                <>Have a project in mind? Let&apos;s build something <em>remarkable</em> together.</>
               )}
             </h2>
             <h2>{s.footerText2 || <><Link href="/contact" className="white" style={{ textDecoration: 'underline', textUnderlineOffset: '8px' }}>Get in touch</Link> — we&apos;re ready when you are.</>}</h2>

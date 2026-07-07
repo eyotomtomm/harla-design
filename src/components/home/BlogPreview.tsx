@@ -39,7 +39,7 @@ export default function BlogPreview({ posts }: { posts: BlogPreviewItem[] }) {
       <div className="container">
         <div className="row section-heading mb-96">
           <div className="section-title col-sm-6 col-lg-6">
-            <h2>LATEST NEWS</h2>
+            <h2>LATEST <em>NEWS</em></h2>
           </div>
           <div className="button col-sm-6 col-lg-6" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '16px' }}>
             {posts.length > 3 && (

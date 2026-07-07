@@ -51,7 +51,7 @@ export default function BlogPage() {
   return (
     <>
       <PageBanner
-        title="BLOG"
+        title="<em>BLOG</em>"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Blog' }]}
         backgroundImage="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80"
       />

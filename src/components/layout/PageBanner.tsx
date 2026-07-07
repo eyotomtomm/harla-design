@@ -30,7 +30,7 @@ export default function PageBanner({
       <div className="container text-center">
         <div className="row align-items-center justify-content-between">
           <AnimateOnScroll animation="fadeInUp" delay="delay-0-2s" className="banner-content">
-            <h1>{title}</h1>
+            <h1 dangerouslySetInnerHTML={{ __html: title }} />
             <div className="mt-32">
               <AnimateOnScroll animation="fadeInUp" delay="delay-0-4s">
                 <ul className="breadcrumb">

@@ -51,7 +51,7 @@ export default function WorkProcessTimeline({ steps }: { steps: WorkStep[] }) {
       <div className="container">
         <div className="row section-heading mb-96">
           <div className="section-title col-sm-6 col-lg-6">
-            <h2>WORK PROCESS</h2>
+            <h2>WORK <em>PROCESS</em></h2>
           </div>
           <div className="button col-sm-6 col-lg-6">
             <Link className="theme-btn" href="/contact">Contact Us</Link>

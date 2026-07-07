@@ -35,7 +35,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   return (
     <>
       <PageBanner
-        title="PROJECT DETAILS"
+        title="PROJECT <em>DETAILS</em>"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Project Details' }]}
         backgroundImage="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
       />

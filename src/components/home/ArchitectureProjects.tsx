@@ -50,7 +50,7 @@ export default function ArchitectureProjects({ projects }: { projects: ArchProje
         <div className="row rel z-1 justify-content-center">
           <div className="section-title text-center mb-96">
             <span className="sub-title mb-16">ARCHITECTURE PROJECTS</span>
-            <h2>LATEST WORKS</h2>
+            <h2>LATEST <em>WORKS</em></h2>
           </div>
         </div>
         <ul className="project-filter tab-style-one justify-content-center nav nav-pills nav-fill mb-96">

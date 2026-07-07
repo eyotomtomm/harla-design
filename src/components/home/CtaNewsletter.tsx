@@ -26,8 +26,8 @@ export default function CtaNewsletter() {
           <div className="video-content-part text-center">
             <span className="sub-title">STAY INFORMED</span>
             <div className="cta-content">
-              <h2>Design insights, <span className="white">delivered.</span></h2>
-              <h2><span className="white">Join </span> our <span className="white">newsletter</span> for projects, <span className="white">ideas</span> &amp; <span className="white">updates.</span></h2>
+              <h2>Design insights, <em>delivered.</em></h2>
+              <h2>Join our newsletter for projects, <em>ideas</em> &amp; updates.</h2>
             </div>
             {submitted ? (
               <p className="mt-96" style={{ color: '#E1B78C' }}>Thank you for subscribing!</p>
