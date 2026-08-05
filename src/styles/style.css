@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------
-    Template Name: Harla - Built Environment Strategy & Design
+    Template Name: Harla Design - Built Environment Strategy & Design
     Template URI: https://harladesign.com
     Author: Lohatheme
     Author URI:  https://lohatheme.com
@@ -421,13 +421,13 @@ button.load-more{
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  color: var(--primary-color);
+  color: #FFFFFF;
   text-transform: uppercase;
   text-align: center;
 }
 
 .sub-title {
-  color: var(--primary-color);
+  color: #FFFFFF;
 }
 
 @media only screen and (max-width: 575px) {
@@ -4194,7 +4194,7 @@ header form.search-form button{
 }
 
 .light-mode .about-harla .sub-title {
-  color: #C9A84C !important;
+  color: #FFFFFF !important;
 }
 
 /* Responsive */

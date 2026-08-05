@@ -47,7 +47,7 @@ export default function Header() {
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
 
   const logoSrc = theme === 'light' ? '/images/logos/logo-light.png' : '/images/logos/logo-dark.png';
-  const harlaColor = theme === 'light' ? '#3D5A80' : '#C9A84C';
+  const harlaColor = theme === 'light' ? '#3D5A80' : '#FFFFFF';
 
   return (
     <header className={`main-header${isFixed ? ' fixed-header' : ''}`}>
@@ -57,8 +57,8 @@ export default function Header() {
             <div className="logo-outer">
               <div className="logo">
                 <Link href="/" style={logoStyle}>
-                  <img src={logoSrc} alt="Harla" title="Harla" style={{ height: '45px', width: 'auto' }} />
-                  <span style={{ ...harlaTextStyle, color: harlaColor }}>Harla</span>
+                  <img src={logoSrc} alt="Harla Design" title="Harla Design" style={{ height: '45px', width: 'auto' }} />
+                  <span style={{ ...harlaTextStyle, color: harlaColor }}>Harla Design</span>
                 </Link>
               </div>
             </div>
@@ -68,8 +68,8 @@ export default function Header() {
                 <div className="navbar-header py-10">
                   <div className="mobile-logo">
                     <Link href="/" style={logoStyle}>
-                      <img src={logoSrc} alt="Harla" title="Harla" style={{ height: '35px', width: 'auto' }} />
-                      <span style={{ ...harlaTextStyle, fontSize: '18px', color: harlaColor }}>Harla</span>
+                      <img src={logoSrc} alt="Harla Design" title="Harla Design" style={{ height: '35px', width: 'auto' }} />
+                      <span style={{ ...harlaTextStyle, fontSize: '18px', color: harlaColor }}>Harla Design</span>
                     </Link>
                   </div>
                   <button
