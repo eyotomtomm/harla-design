@@ -1,5 +1,5 @@
 {
-  "name": "harla-nextjs",
+  "name": "harla-design-nextjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "seed": "npx ts-node --compiler-options {\"module\":\"commonjs\"} prisma/seed.ts",
     "db:push": "npx prisma db push",
     "db:seed": "npx prisma db seed",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate && next build"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"commonjs\"} prisma/seed.ts"
