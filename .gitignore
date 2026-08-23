@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# project instruction files
+*.md
+
+# deploy build artifact
+/deploy
+
+# utility scripts
+w.js
+write_all.py
+writer.mjs
+writer.py
