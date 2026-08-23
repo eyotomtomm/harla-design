@@ -23,13 +23,13 @@ const faqItems = [
     answer2: 'Knowing your budget range and timeline expectations also helps us tailor our approach from the very first meeting.',
   },
   {
-    question: 'How does Harla collaborate with contractors and builders?',
+    question: 'How does Harla Design collaborate with contractors and builders?',
     subtitle: 'We work as an integrated team throughout the project lifecycle.',
     answer1: 'Our consultancy coordinates closely with builders, engineers, and tradespeople to ensure design intent is preserved through construction. We provide detailed specifications and regular site oversight.',
     answer2: 'This hands-on collaboration minimizes errors, controls costs, and delivers results that match the original vision.',
   },
   {
-    question: 'What types of projects does Harla take on?',
+    question: 'What types of projects does Harla Design take on?',
     subtitle: 'Residential, hospitality, commercial, and bespoke private commissions.',
     answer1: 'From private homes and villas to boutique hotels and restaurant interiors, we bring the same level of care and craft to every scale of project.',
     answer2: 'Each project is treated as unique — we do not apply templates or one-size-fits-all solutions.',

@@ -23,7 +23,7 @@ export default function AdminDashboard() {
         </div>
       </div>
       <div className="admin-card">
-        <h3>Welcome to Harla Admin</h3>
+        <h3>Welcome to Harla Design Admin</h3>
         <p style={{ color: '#999' }}>Use the sidebar to manage your website content. All changes will be reflected on the public site immediately.</p>
       </div>
     </>

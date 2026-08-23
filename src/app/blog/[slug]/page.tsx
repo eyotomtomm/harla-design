@@ -4,11 +4,11 @@ import PageBanner from '@/components/layout/PageBanner';
 const blogPost = {
   title: 'The Art of Boutique Hotel Design',
   date: '15 July 2024',
-  author: 'Harla',
+  author: 'Harla Design',
   image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80',
   content: [
     'Boutique hotel design is about creating an atmosphere that feels both curated and effortless. Every surface, every sightline, every transition between spaces should serve the guest experience without demanding attention.',
-    'At Harla, we approach hospitality projects with the same intimacy we bring to private residences. The lobby should feel like a living room. The corridors should feel like galleries. The rooms should feel like home — only better.',
+    'At Harla Design, we approach hospitality projects with the same intimacy we bring to private residences. The lobby should feel like a living room. The corridors should feel like galleries. The rooms should feel like home — only better.',
     'The most successful hotel interiors balance three things: local context, material honesty, and spatial generosity. When these align, the design disappears and the experience takes over.',
   ],
   tags: ['Hospitality', 'Design', 'Interiors'],

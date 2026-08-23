@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 const tabs = [
-  { id: 'who', label: 'Who We Are', content: 'Harla is an architecture and interior design consultancy crafting spaces across residential, hospitality, and commercial sectors.', content2: 'We bring clarity, craft, and enduring quality to every project we undertake.' },
+  { id: 'who', label: 'Who We Are', content: 'Harla Design is an architecture and interior design consultancy crafting spaces across residential, hospitality, and commercial sectors.', content2: 'We bring clarity, craft, and enduring quality to every project we undertake.' },
   { id: 'mission', label: 'Mission', content: 'To transform how people experience the spaces they inhabit — through design that balances aesthetics, function, and emotion.' },
   { id: 'vision', label: 'Vision', content: 'To be the standard for design consultancy — where every structure tells a story and every interior holds meaning.', content2: 'We envision a world where architecture serves people, not the other way around.' },
 ];
@@ -42,8 +42,8 @@ export default function AboutStyleTwo() {
           </div>
           <div className="col-xl-6 col-lg-6">
             <div className="imgs">
-              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=80" alt="Harla studio interior" />
-              <img className="hovershow" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=80" alt="Harla studio detail" />
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=80" alt="Harla Design studio interior" />
+              <img className="hovershow" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=80" alt="Harla Design studio detail" />
             </div>
           </div>
         </div>

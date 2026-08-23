@@ -190,7 +190,7 @@ model WorkProcessStep {
 
 model SiteSettings {
   id               Int      @id @default(autoincrement())
-  siteName         String   @default("Harla")
+  siteName         String   @default("Harla Design")
   logo             String   @default("/images/logos/logo-dark.png")
   logoBlack        String   @default("/images/logos/logo-light.png")
   logoWhite        String   @default("/images/logos/logo-dark.png")
@@ -202,7 +202,7 @@ model SiteSettings {
   mapEmbedUrl      String   @db.Text
   footerText1      String   @db.Text
   footerText2      String   @default("Get in touch — we're ready when you are.")
-  copyrightText    String   @default("© Copyright Harla 2024. All rights reserved.")
+  copyrightText    String   @default("© Copyright Harla Design 2024. All rights reserved.")
   socialDribbble   String   @default("#")
   socialFacebook   String   @default("#")
   socialInstagram  String   @default("#")

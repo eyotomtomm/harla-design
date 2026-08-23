@@ -25,10 +25,10 @@ export default function Preloader() {
       <div className="preloader-inner">
         <img
           src="/images/logos/logo-dark.png"
-          alt="Harla"
+          alt="Harla Design"
           className="preloader-logo"
         />
-        <span className="preloader-text">HARLA</span>
+        <span className="preloader-text">HARLA DESIGN</span>
         <div className="preloader-line">
           <div className="preloader-line-fill"></div>
         </div>

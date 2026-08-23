@@ -26,17 +26,17 @@ const defaultWorkSteps = [
 ];
 
 const defaultTestimonials = [
-  { id: 1, quote: 'Harla understood our vision before we could fully articulate it. The result exceeded everything we imagined.', authorName: 'Olivia Carpenter', designation: 'Private Homeowner', authorImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80', rating: 5 },
+  { id: 1, quote: 'Harla Design understood our vision before we could fully articulate it. The result exceeded everything we imagined.', authorName: 'Olivia Carpenter', designation: 'Private Homeowner', authorImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80', rating: 5 },
   { id: 2, quote: 'Meticulous attention to detail and an unwavering commitment to quality. A truly exceptional partnership.', authorName: 'David Laurent', designation: 'Hotel Developer', authorImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80', rating: 5 },
   { id: 3, quote: 'They transformed a complex brief into a space that feels effortless. That takes real expertise.', authorName: 'Lara Nguyen', designation: 'Restaurant Owner', authorImage: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80', rating: 5 },
   { id: 4, quote: 'From concept to completion, the process was seamless. Our home feels exactly as it should.', authorName: 'Charlotte Moreau', designation: 'Villa Owner', authorImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80', rating: 5 },
-  { id: 5, quote: 'Working with Harla felt like a collaboration, not a transaction. The difference shows in every detail.', authorName: 'Isabella Reyes', designation: 'Creative Director', authorImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&q=80', rating: 5 },
+  { id: 5, quote: 'Working with Harla Design felt like a collaboration, not a transaction. The difference shows in every detail.', authorName: 'Isabella Reyes', designation: 'Creative Director', authorImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&q=80', rating: 5 },
 ];
 
 const defaultBlogPosts = [
-  { id: 1, title: 'The Art of Boutique Hotel Design', slug: 'boutique-hotel-design', featuredImage: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80', publishedAt: '2024-07-15', author: 'Harla', commentCount: 1, excerpt: 'How thoughtful spatial planning transforms hospitality experiences.' },
-  { id: 2, title: 'Material Palettes That Endure', slug: 'material-palettes', featuredImage: 'https://images.unsplash.com/photo-1616137466211-f736a1f8c7be?w=800&q=80', publishedAt: '2024-07-15', author: 'Harla', commentCount: 1, excerpt: 'Choosing finishes that age gracefully and tell a richer story over time.' },
-  { id: 3, title: 'Designing for Natural Light', slug: 'designing-natural-light', featuredImage: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80', publishedAt: '2024-07-15', author: 'Harla', commentCount: 1, excerpt: 'Why orientation and aperture are the most important design decisions.' },
+  { id: 1, title: 'The Art of Boutique Hotel Design', slug: 'boutique-hotel-design', featuredImage: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80', publishedAt: '2024-07-15', author: 'Harla Design', commentCount: 1, excerpt: 'How thoughtful spatial planning transforms hospitality experiences.' },
+  { id: 2, title: 'Material Palettes That Endure', slug: 'material-palettes', featuredImage: 'https://images.unsplash.com/photo-1616137466211-f736a1f8c7be?w=800&q=80', publishedAt: '2024-07-15', author: 'Harla Design', commentCount: 1, excerpt: 'Choosing finishes that age gracefully and tell a richer story over time.' },
+  { id: 3, title: 'Designing for Natural Light', slug: 'designing-natural-light', featuredImage: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80', publishedAt: '2024-07-15', author: 'Harla Design', commentCount: 1, excerpt: 'Why orientation and aperture are the most important design decisions.' },
 ];
 
 export default async function HomePage() {

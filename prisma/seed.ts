@@ -34,9 +34,9 @@ async function main() {
 
   // About Tabs
   const aboutTabs = [
-    { tabLabel: 'WHO WE ARE', paragraph1: 'Harla has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', paragraph2: 'Harla has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', bigImage: '/images/about/1.png', smallImage: '/images/about/1-small.png', sortOrder: 1 },
-    { tabLabel: 'OUR MISSION', paragraph1: 'Harla has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', paragraph2: 'Harla has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', bigImage: '/images/about/2.png', smallImage: '/images/about/2-small.png', sortOrder: 2 },
-    { tabLabel: 'OUR VISSION', paragraph1: 'Harla has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', paragraph2: 'Harla has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', bigImage: '/images/about/3.png', smallImage: '/images/about/3-small.png', sortOrder: 3 },
+    { tabLabel: 'WHO WE ARE', paragraph1: 'Harla Design has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', paragraph2: 'Harla Design has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', bigImage: '/images/about/1.png', smallImage: '/images/about/1-small.png', sortOrder: 1 },
+    { tabLabel: 'OUR MISSION', paragraph1: 'Harla Design has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', paragraph2: 'Harla Design has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', bigImage: '/images/about/2.png', smallImage: '/images/about/2-small.png', sortOrder: 2 },
+    { tabLabel: 'OUR VISSION', paragraph1: 'Harla Design has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', paragraph2: 'Harla Design has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.', bigImage: '/images/about/3.png', smallImage: '/images/about/3-small.png', sortOrder: 3 },
   ];
   for (const tab of aboutTabs) {
     await prisma.aboutTab.create({ data: tab });
@@ -47,11 +47,11 @@ async function main() {
   await prisma.aboutPage.create({
     data: {
       heading: 'Where imagination meets reality',
-      whoWeAre: 'Harla has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.',
-      whoWeAre2: 'Harla has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.',
-      mission: 'Harla has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.',
-      vision: 'Harla has worked on projects nationwide and worldwide, designs that make magic happen, without the wand.',
-      vision2: 'Harla has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.',
+      whoWeAre: 'Harla Design has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.',
+      whoWeAre2: 'Harla Design has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.',
+      mission: 'Harla Design has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.',
+      vision: 'Harla Design has worked on projects nationwide and worldwide, designs that make magic happen, without the wand.',
+      vision2: 'Harla Design has worked on projects nationwide and worldwide, designs that make magic happen, without the wand. focuses more on structural design, whereas interior design is the practice of creating interior atmosphere.',
       bannerImage: '/images/about/page-banner.png',
       bannerImageLight: '/images/about/page-banner-light.png',
       aboutImage: '/images/about/about-right.jpg',
@@ -130,7 +130,7 @@ async function main() {
 
   // Interior Projects
   const interiorProjects = [
-    { subtitle: 'VILLA ROOM', title: 'Villa Room Design Harla Style', description: 'We have several strategic teaming arrangements with experienced to complete full design services.', image: '/images/interior/1.jpg', linkUrl: '/projects/house-design', category: 'ALL', sortOrder: 1 },
+    { subtitle: 'VILLA ROOM', title: 'Villa Room Design Harla Design Style', description: 'We have several strategic teaming arrangements with experienced to complete full design services.', image: '/images/interior/1.jpg', linkUrl: '/projects/house-design', category: 'ALL', sortOrder: 1 },
     { subtitle: 'LIVING ROOM', title: 'Living Room Design Classic Style', description: 'We have several strategic teaming arrangements with experienced to complete full design services.', image: '/images/interior/2.jpg', linkUrl: '/projects/house-design', category: 'ALL', sortOrder: 2 },
     { subtitle: 'WORK ROOM', title: 'Work Room Design Modern Style', description: 'We have several strategic teaming arrangements with experienced to complete full design services.', image: '/images/interior/3.jpg', linkUrl: '/projects/house-design', category: 'ALL', sortOrder: 3 },
     { subtitle: 'OPEN SPACE', title: 'Open Space Minimalism Style', description: 'We have several strategic teaming arrangements with experienced to complete full design services.', image: '/images/interior/4.jpg', linkUrl: '/projects/house-design', category: 'ALL', sortOrder: 4 },
@@ -264,7 +264,7 @@ async function main() {
   // Site Settings
   await prisma.siteSettings.create({
     data: {
-      siteName: 'Harla',
+      siteName: 'Harla Design',
       logo: '/images/logos/logo.png',
       logoBlack: '/images/logos/logo-black.png',
       logoWhite: '/images/logos/logo-white.png',
@@ -276,7 +276,7 @@ async function main() {
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d96776.56071496992!2d-74.02420878160657!3d40.71212692665102!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1676287097391!5m2!1sen!2sbd',
       footerText1: 'The greatest architecture & interior design company, best in its industry.',
       footerText2: 'Serving luxury services worldwide.',
-      copyrightText: '© Copyright Harla 2025. All rights reserved.',
+      copyrightText: '© Copyright Harla Design 2025. All rights reserved.',
       socialDribbble: '#',
       socialFacebook: '#',
       socialInstagram: '#',

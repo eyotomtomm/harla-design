@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Insights on built environment strategy, design accountability, and urban development across Africa and the GCC.',
   alternates: { canonical: '/blog' },
   openGraph: {
-    title: 'Blog | Harla',
+    title: 'Blog | Harla Design',
     description: 'Insights on built environment strategy, design accountability, and urban development.',
     url: 'https://harladesign.com/blog',
   },

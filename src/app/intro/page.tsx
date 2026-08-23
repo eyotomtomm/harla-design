@@ -24,8 +24,8 @@ export default function IntroPage() {
     >
       <div className="container text-center">
         <div className="intro-content">
-          <img src="/images/logos/logo-dark.png" alt="Harla" style={{ maxWidth: '120px', marginBottom: '40px' }} />
-          <h1 style={{ fontSize: '48px', marginBottom: '20px', letterSpacing: '8px', fontWeight: 200 }}>HARLA</h1>
+          <img src="/images/logos/logo-dark.png" alt="Harla Design" style={{ maxWidth: '120px', marginBottom: '40px' }} />
+          <h1 style={{ fontSize: '48px', marginBottom: '20px', letterSpacing: '8px', fontWeight: 200 }}>HARLA DESIGN</h1>
           <p style={{ fontSize: '18px', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px' }}>
             Architecture &amp; Interior Design Consultancy
           </p>

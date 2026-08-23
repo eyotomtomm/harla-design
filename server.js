@@ -11,6 +11,6 @@ app.prepare().then(() => {
     const parsedUrl = parse(req.url, true);
     handle(req, res, parsedUrl);
   }).listen(port, () => {
-    console.log(`> Harla running on port ${port}`);
+    console.log(`> Harla Design running on port ${port}`);
   });
 });

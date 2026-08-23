@@ -8,10 +8,10 @@ import FaqTimeline from '@/components/about/FaqTimeline';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Harla is a senior advisory team bringing strategic clarity and design accountability to every stage of the built environment process.',
+  description: 'Harla Design is a senior advisory team bringing strategic clarity and design accountability to every stage of the built environment process.',
   alternates: { canonical: '/about' },
   openGraph: {
-    title: 'About | Harla',
+    title: 'About | Harla Design',
     description: 'A small, senior advisory team that works directly alongside developers across Africa and the GCC.',
     url: 'https://harladesign.com/about',
   },

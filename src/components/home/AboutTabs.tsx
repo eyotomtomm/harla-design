@@ -17,15 +17,15 @@ const tabs: TabData[] = [
   {
     id: 'mission',
     label: 'MISSION',
-    text: 'Harla exists to make sure great development intentions become great built outcomes. We bring strategic clarity, design accountability, and rigorous coordination to every project we touch — so that what gets delivered reflects what was originally envisioned, for the people who will ultimately use it.',
+    text: 'Harla Design exists to make sure great development intentions become great built outcomes. We bring strategic clarity, design accountability, and rigorous coordination to every project we touch — so that what gets delivered reflects what was originally envisioned, for the people who will ultimately use it.',
   },
   {
     id: 'about',
     label: 'ABOUT',
     paragraphs: [
-      'Great developments start with a clear vision. Keeping that vision intact — through feasibility, through design, through the pressures of budget and programme — is where Harla comes in.',
+      'Great developments start with a clear vision. Keeping that vision intact — through feasibility, through design, through the pressures of budget and programme — is where Harla Design comes in.',
       'We are a small, senior advisory team that works directly alongside developers, bringing strategic thinking and design accountability to every stage of the process. We help define what a project should be, coordinate the teams responsible for delivering it, and stay close enough to the work to make sure the original ambition survives contact with reality.',
-      'Our clients are developers and investors who care deeply about what they build, how it gets built, and the people it will serve. That focus on quality and purpose is what every Harla engagement is built around.',
+      'Our clients are developers and investors who care deeply about what they build, how it gets built, and the people it will serve. That focus on quality and purpose is what every Harla Design engagement is built around.',
     ],
   },
 ];
