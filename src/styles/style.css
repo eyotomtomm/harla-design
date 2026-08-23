@@ -3658,7 +3658,7 @@ header form.search-form button{
 }
 
 .hero-nujuma-subtitle {
-  color: #C9A84C;
+  color: #FFFFFF;
   font-size: 12px;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -3679,7 +3679,7 @@ header form.search-form button{
 .hero-nujuma-heading em,
 .light-mode .hero-nujuma-heading em {
   font-style: italic;
-  color: #C9A84C !important;
+  color: #fff !important;
 }
 
 .hero-nujuma-right {
@@ -3747,7 +3747,7 @@ header form.search-form button{
 
 /* Light mode — hero always stays dark */
 .light-mode .hero-nujuma-subtitle {
-  color: #C9A84C;
+  color: #FFFFFF;
 }
 
 .light-mode .hero-nujuma-btn-services {
