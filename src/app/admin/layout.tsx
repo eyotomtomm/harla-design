@@ -23,7 +23,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="logo">
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
             <img src="/images/logos/logo-dark.png" alt="Harla Design" style={{ height: '35px', width: 'auto' }} />
-            <span style={{ fontFamily: '"Montserrat", sans-serif', fontWeight: 200, fontSize: '18px', letterSpacing: '3px', color: '#C9A84C' }}>Harla Design</span>
+            <span style={{ fontFamily: '"Montserrat", sans-serif', fontWeight: 200, fontSize: '18px', letterSpacing: '3px', color: '#FFFFFF' }}>Harla Design</span>
           </Link>
         </div>
         <nav>
