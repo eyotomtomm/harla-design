@@ -24,7 +24,7 @@ export default function PageBanner({
 
   return (
     <section
-      className={`banner-area text-black pt-324 pb-250 ${className}`}
+      className={`banner-area text-black pt-250 pb-180 ${className}`}
       style={bgImage ? { backgroundImage: `url(${bgImage})` } : undefined}
     >
       <div className="container text-center">

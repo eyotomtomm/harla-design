@@ -34,7 +34,7 @@ export default function Footer({ settings }: FooterProps) {
 
   return (
     <footer className="main-footer py-128 black-120-bg">
-      <div className="footer-top mb-96">
+      <div className="footer-top mb-64">
         <div className="container">
           <div className="col-lg-10">
             <h2>

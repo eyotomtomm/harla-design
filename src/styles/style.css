@@ -1543,7 +1543,13 @@ h2, .h2 {
 }
 
 .py-128{
-  padding:  128px 0;
+  padding:  100px 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .py-128{
+    padding: 64px 0;
+  }
 }
 
 .pt-130,
@@ -4018,7 +4024,7 @@ header form.search-form button{
 }
 
 .about-harla-header {
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 
 .about-harla-header h2 {
@@ -4101,7 +4107,7 @@ header form.search-form button{
 
 /* Tab content */
 .about-harla-content {
-  margin-bottom: 96px;
+  margin-bottom: 64px;
   max-width: 900px;
 }
 
@@ -4703,7 +4709,7 @@ header form.search-form button{
 }
 
 .architecture-area .project-active > div:not(:last-child){
-    margin-bottom: 128px;
+    margin-bottom: 0;
 }
 
 .architecture-area .project-active > .col-lg-12{
@@ -5051,7 +5057,7 @@ button.read-more{
   display: flex;
   flex-wrap: wrap;
   gap: 12px 40px;
-  margin-bottom: 96px;
+  margin-bottom: 64px;
   padding-bottom: 24px;
   border-bottom: 1px solid var(--black-90);
 }
@@ -5077,7 +5083,7 @@ button.read-more{
 }
 
 .project-gallery-row {
-  padding: 96px 0;
+  padding: 64px 0;
   border-top: 1px solid var(--black-90);
   scroll-margin-top: 110px;
 }
@@ -5096,7 +5102,7 @@ button.read-more{
   grid-template-columns: 1fr 1fr;
   gap: 32px;
   align-items: end;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
 }
 
 .project-gallery-head .sub-title {
@@ -5239,11 +5245,11 @@ button.read-more{
   }
 
   .project-gallery-row {
-    padding: 64px 0;
+    padding: 48px 0;
   }
 
   .project-gallery-nav {
-    margin-bottom: 64px;
+    margin-bottom: 48px;
   }
 }
 
@@ -7545,10 +7551,9 @@ blockquote cite.name {
 
 /* --- Nujuma-style contact page --- */
 .contact-nujuma {
-  min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 160px 0 100px;
+  padding: 120px 0 100px;
 }
 
 .contact-nujuma-grid {
