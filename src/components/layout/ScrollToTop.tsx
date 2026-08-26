@@ -11,11 +11,13 @@ export default function ScrollToTop() {
 
   return (
     <button
+      type="button"
       className="scroll-top scroll-to-target"
       onClick={handleClick}
+      aria-label="Back to top"
       style={{ display: showScrollTop ? 'block' : 'none' }}
     >
-      <span className="fas fa-angle-double-up"></span>
+      <span className="fas fa-angle-double-up" aria-hidden="true"></span>
     </button>
   );
 }

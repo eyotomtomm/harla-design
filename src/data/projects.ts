@@ -6,7 +6,8 @@
  * the project type, and the location. No individual project pages exist —
  * images open in a lightbox.
  *
- * `fit: 'contain'` is for logos / graphics that should not be cropped.
+ * Items with `fit: 'contain'` (logos, no photograph yet) are listed by name
+ * under the row instead of shown as a tile.
  */
 
 export interface ProjectItem {
@@ -35,7 +36,7 @@ export const projectCategories: ProjectCategory[] = [
     items: [
       { client: 'Anbessa Apartment', type: 'Residents’ Gym', location: ADDIS, image: '/images/projects/anbessa-apartment/gym-1.jpg', alt: 'Anbessa Apartment residents’ gym' },
       { client: 'Anbessa Apartment', type: 'Residents’ Gym', location: ADDIS, image: '/images/projects/anbessa-apartment/gym-2.jpg', alt: 'Anbessa Apartment gym, second view' },
-      { client: 'Anbessa Apartment', type: 'Coffee Lounge', location: ADDIS, image: '/images/projects/anbessa-apartment/coffee-area.png', alt: 'Anbessa Apartment coffee lounge' },
+      { client: 'Anbessa Apartment', type: 'Coffee Lounge', location: ADDIS, image: '/images/projects/anbessa-apartment/coffee-area.jpg', alt: 'Anbessa Apartment coffee lounge' },
       { client: 'Abay Bank', type: 'Staff Gym', location: ADDIS, image: '/images/projects/abay-bank/gym-1.jpg', alt: 'Abay Bank staff gym' },
       { client: 'Abay Bank', type: 'Staff Gym', location: ADDIS, image: '/images/projects/abay-bank/gym-2.jpg', alt: 'Abay Bank staff gym, second view' },
     ],
@@ -60,10 +61,10 @@ export const projectCategories: ProjectCategory[] = [
     items: [
       { client: 'Glorious Group', type: 'Headquarters', location: ADDIS, image: '/images/projects/glorious-group-hq/exterior.jpg', alt: 'Glorious Group headquarters exterior' },
       { client: 'East Africa Holdings', type: 'Corporate Offices', location: ADDIS, image: '/images/projects/east-africa-holdings/logo.png', alt: 'East Africa Holdings', fit: 'contain' },
-      { client: 'Anbessa', type: 'Executive Offices', location: ADDIS, image: '/images/projects/anbessa-apartment/office-lounge.png', alt: 'Anbessa executive office lounge' },
-      { client: 'Anbessa', type: 'Executive Offices', location: ADDIS, image: '/images/projects/anbessa-apartment/office-waiting.png', alt: 'Anbessa executive office waiting area' },
-      { client: 'Anbessa', type: 'Executive Offices', location: ADDIS, image: '/images/projects/anbessa-apartment/meeting-room.png', alt: 'Anbessa meeting room' },
-      { client: 'Anbessa', type: 'Executive Offices', location: ADDIS, image: '/images/projects/anbessa-apartment/waiting-area.png', alt: 'Anbessa reception waiting area' },
+      { client: 'Anbessa', type: 'Executive Offices', location: ADDIS, image: '/images/projects/anbessa-apartment/office-lounge.jpg', alt: 'Anbessa executive office lounge' },
+      { client: 'Anbessa', type: 'Executive Offices', location: ADDIS, image: '/images/projects/anbessa-apartment/office-waiting.jpg', alt: 'Anbessa executive office waiting area' },
+      { client: 'Anbessa', type: 'Executive Offices', location: ADDIS, image: '/images/projects/anbessa-apartment/meeting-room.jpg', alt: 'Anbessa meeting room' },
+      { client: 'Anbessa', type: 'Executive Offices', location: ADDIS, image: '/images/projects/anbessa-apartment/waiting-area.jpg', alt: 'Anbessa reception waiting area' },
     ],
   },
   {
@@ -85,7 +86,6 @@ export const projectCategories: ProjectCategory[] = [
       { client: 'Arada Mall', type: 'Luxury Mall', location: ADDIS, image: '/images/projects/arada-mall/exterior.jpg', alt: 'Manson Arada Luxury Mall exterior' },
       { client: 'Hanson Coffee Lab', type: 'Café & Retail', location: ADDIS, image: '/images/projects/hanson-coffee-lab/store.jpg', alt: 'Hanson Coffee Lab display' },
       { client: 'Rungo Perfumes', type: 'Flagship Store', image: '/images/projects/rungo-perfumes/interior.jpg', alt: 'Rungo Perfumes flagship store interior' },
-      { client: 'Rungo Perfumes', type: 'Brand Identity', image: '/images/projects/rungo-perfumes/logo.png', alt: 'Rungo Perfumes logo', fit: 'contain' },
     ],
   },
 ];

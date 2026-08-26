@@ -46,8 +46,6 @@ next-env.d.ts
 # deploy build artifact
 /deploy
 
-# utility scripts
-w.js
-write_all.py
-writer.mjs
-writer.py
+# user uploads (served from object storage in production)
+/public/uploads/*
+!/public/uploads/.gitkeep

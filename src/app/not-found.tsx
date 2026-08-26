@@ -1,19 +1,20 @@
 import Link from 'next/link';
+import SiteShell from '@/components/layout/SiteShell';
 
 export default function NotFound() {
   return (
-    <section className="error-area">
-      <div className="container">
-        <div className="error-content text-center">
-          <span className="error-img">
-            <img src="/images/projects/abay-bank/lobby-6.jpg" alt="" />
-          </span>
-          <div className="error-desc ow py-128 justify-content-center">
-            <p>OOPPS! THE PAGE YOU WERE LOOKING FOR, COULD NOT BE FOUND.</p>
+    <SiteShell>
+      <section className="error-page">
+        <div className="container">
+          <span className="sub-title mb-16">404</span>
+          <h1>That page isn&apos;t here.</h1>
+          <p>The link may be out of date. Try the projects, or write to us.</p>
+          <div className="error-page-actions">
+            <Link href="/projects" className="theme-btn">View projects</Link>
+            <Link href="/contact" className="read-more">Get in touch <i className="fa fa-long-arrow-right"></i></Link>
           </div>
-          <Link href="/" className="primary-readmore">Back To Home</Link>
         </div>
-      </div>
-    </section>
+      </section>
+    </SiteShell>
   );
 }

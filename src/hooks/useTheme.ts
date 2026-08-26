@@ -1,42 +1,52 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
-type Theme = 'dark' | 'light';
+export type Theme = 'dark' | 'light';
 
-interface ThemeContextType {
-  theme: Theme;
-  toggleTheme: () => void;
+export const THEME_STORAGE_KEY = 'harla-theme';
+const CLASS = 'light-mode';
+const EVENT = 'harla-theme-change';
+
+/**
+ * Theme lives on <html class="light-mode"> so it can be applied before paint
+ * by the inline script in the root layout (no dark flash for light-mode
+ * visitors). Components subscribe through useSyncExternalStore so the server
+ * render and the first client render agree ("dark"), then update.
+ */
+function readTheme(): Theme {
+  if (typeof document === 'undefined') return 'dark';
+  return document.documentElement.classList.contains(CLASS) ? 'light' : 'dark';
 }
 
-const STORAGE_KEY = 'harla-theme';
+export function applyTheme(theme: Theme) {
+  const root = document.documentElement;
+  root.classList.toggle(CLASS, theme === 'light');
+  root.style.colorScheme = theme;
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch {
+    // storage unavailable (private mode) — theme still applies for this page
+  }
+  window.dispatchEvent(new Event(EVENT));
+}
 
-export const ThemeContext = createContext<ThemeContextType>({
-  theme: 'dark',
-  toggleTheme: () => {},
-});
+function subscribe(callback: () => void) {
+  window.addEventListener(EVENT, callback);
+  window.addEventListener('storage', callback);
+  return () => {
+    window.removeEventListener(EVENT, callback);
+    window.removeEventListener('storage', callback);
+  };
+}
 
 export function useTheme() {
-  return useContext(ThemeContext);
-}
-
-export function useThemeProvider() {
-  const [theme, setTheme] = useState<Theme>('dark');
-
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY) as Theme | null;
-    if (saved) {
-      setTheme(saved);
-    }
-  }, []);
-
+  const theme = useSyncExternalStore(subscribe, readTheme, () => 'dark' as Theme);
   const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const next = prev === 'dark' ? 'light' : 'dark';
-      localStorage.setItem(STORAGE_KEY, next);
-      return next;
-    });
+    applyTheme(readTheme() === 'dark' ? 'light' : 'dark');
   }, []);
-
   return { theme, toggleTheme };
 }
+
+/** Inline in <head>: sets the class before first paint. Keep in sync with readTheme(). */
+export const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem('${THEME_STORAGE_KEY}');if(t==='light'){document.documentElement.classList.add('${CLASS}');}document.documentElement.style.colorScheme=t==='light'?'light':'dark';}catch(e){}})();`;

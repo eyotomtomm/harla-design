@@ -12,7 +12,7 @@ const items: ServiceItem[] = [
   { id: 1, title: 'Research', description: 'Deep-dive analysis into context, users, and market dynamics.', image: '/images/projects/lobby-design/lobby-a.jpg' },
   { id: 2, title: 'Strategy', description: 'Frameworks that align vision with measurable outcomes.', image: '/images/projects/abay-bank/lobby-1.jpg' },
   { id: 3, title: 'Design', description: 'Spatial and visual solutions shaped by insight.', image: '/images/projects/lobby-design/lobby-b.jpg' },
-  { id: 4, title: 'UX Journey', description: 'End-to-end experience mapping from entry to engagement.', image: '/images/projects/anbessa-apartment/office-lounge.png' },
+  { id: 4, title: 'UX Journey', description: 'End-to-end experience mapping from entry to engagement.', image: '/images/projects/anbessa-apartment/office-lounge.jpg' },
   { id: 5, title: 'Innovate', description: 'Emerging tools and methods applied to built environments.', image: '/images/projects/lobby-design/lobby-c.jpg' },
 ];
 

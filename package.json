@@ -10,7 +10,7 @@
     "seed": "npx ts-node --compiler-options {\"module\":\"commonjs\"} prisma/seed.ts",
     "db:push": "npx prisma db push",
     "db:seed": "npx prisma db seed",
-    "postinstall": "prisma generate && next build"
+    "postinstall": "prisma generate"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"commonjs\"} prisma/seed.ts"

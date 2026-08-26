@@ -40,7 +40,6 @@
   margin: 0;
   padding: 0;
   border: none;
-  outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -76,7 +75,7 @@ body {
   --border-color: #D9DFE7;
 }
 
-body:has(.light-mode) {
+html.light-mode body {
   color: var(--black-90);
   --primary-color: #3D5A80;
   --accent-text: #3D5A80;
@@ -85,7 +84,6 @@ body:has(.light-mode) {
 a {
   color: var(--black-30);
   cursor: pointer;
-  outline: none;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -94,7 +92,41 @@ a {
 
 a:hover, a:focus, a:visited {
   text-decoration: none;
-  outline: none;
+}
+
+/* Keyboard focus is visible everywhere; mouse users never see it */
+:focus-visible {
+  outline: 2px solid var(--heading-color);
+  outline-offset: 3px;
+}
+
+.light-mode :focus-visible {
+  outline-color: var(--black-100);
+}
+
+.light-mode .black-120-bg :focus-visible,
+.light-mode .black-110-bg :focus-visible,
+.light-mode .black-100-bg :focus-visible,
+.light-mode .hero-nujuma :focus-visible,
+.light-mode .main-footer :focus-visible {
+  outline-color: #fff;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 100000;
+  padding: 12px 20px;
+  background: var(--heading-color);
+  color: var(--black-100);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.skip-link:focus {
+  top: 16px;
+  color: var(--black-100);
 }
 
 a:hover {
@@ -192,7 +224,6 @@ label {
 input:focus,
 button:focus,
 .form-control:focus {
-  outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
   border-color: var(--black-90);
@@ -786,9 +817,9 @@ ul.nav-pills.tab-style-one .nav-link{
   font-size: 14px;
   cursor: pointer;
   line-height: 40px;
-  background: var(--primary-color);
-  -webkit-animation: pulse 2s infinite;
-  animation: pulse 2s infinite;
+  background: var(--black-120);
+  color: var(--heading-color);
+  border: 1px solid var(--black-60);
 }
 
 /* Textvar(--heading-color) */
@@ -1013,32 +1044,32 @@ h6,
 h1,
 .h1,
 h2,
-.h2,
+.h2 {
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
 h3,
 .h3,
 h4,
-.h4{
-  font-weight: 900;
+.h4 {
+  font-weight: 400;
+  letter-spacing: -0.5px;
 }
 
-h1, .h1 {
-  text-shadow: 2px 0 var(--heading-color);
+h1 strong, h2 strong, h3 strong {
+  font-weight: 500;
 }
 
-h2, .h2 {
-  text-shadow: 2px 0 var(--heading-color);
-}
-
-.light-mode h1, .light-mode .h1,
-.light-mode h2, .light-mode .h2 {
-  text-shadow: 2px 0 var(--black-100);
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+  text-shadow: none;
 }
 
 @media only screen and (min-width: 1600px) {
 .big-text{
     font-size: 120px;
     line-height: 1.2;
-    font-weight: 900;
+    font-weight: 300;
     letter-spacing: -10px;
   }
 }
@@ -1047,7 +1078,7 @@ h2, .h2 {
   .big-text{
     font-size: 100px;
     line-height: 1.2;
-    font-weight: 900;
+    font-weight: 300;
     letter-spacing: -10px;
   }
 }
@@ -1093,7 +1124,7 @@ h2, .h2 {
   .big-text{
     font-size: 90px;
     line-height: 1.2;
-    font-weight: 900;
+    font-weight: 300;
     letter-spacing: -5px;
   }
 
@@ -1134,7 +1165,7 @@ h2, .h2 {
   .big-text{
     font-size: 67px;
     line-height: 1.2;
-    font-weight: 900;
+    font-weight: 300;
     letter-spacing: -3px;
   }
 
@@ -1156,7 +1187,7 @@ h2, .h2 {
   .big-text{
     font-size: 51px;
     line-height: 1.2;
-    font-weight: 900;
+    font-weight: 300;
     letter-spacing: -3px;
   }
 
@@ -1164,19 +1195,12 @@ h2, .h2 {
     line-height: 1.2;
     font-size: 46px;
     letter-spacing: -2px;
-    text-shadow: unset;
   }
 
   h2, .h2 {
     line-height: 1.2;
     font-size: 38px;
     letter-spacing: -2px;
-    text-shadow: unset;
-  }
-
-  .light-mode h1, .light-mode .h1,
-  .light-mode h2, .light-mode .h2 {
-    text-shadow: unset;
   }
 
 }
@@ -3552,7 +3576,8 @@ header form.search-form button{
   float: right;
   cursor: pointer;
   padding: 5px 14px;
-  background: var(--primary-color);
+  background: transparent;
+  border: 1px solid var(--black-60);
 }
 
 .main-menu .navbar-header .navbar-toggle .icon-bar {
@@ -3700,7 +3725,7 @@ header form.search-form button{
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   text-decoration: none;
   transition: 0.5s;
@@ -3713,10 +3738,11 @@ header form.search-form button{
 }
 
 .hero-nujuma-btn-touch {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.9);
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-size: 11px;
+  font-size: 13px;
+  padding: 6px 0;
   font-weight: 500;
   text-decoration: none;
   transition: 0.5s;
@@ -3741,8 +3767,8 @@ header form.search-form button{
 }
 
 .hero-nujuma-bottom p {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
   letter-spacing: 0.3px;
   margin: 0;
   font-weight: 400;
@@ -3759,7 +3785,7 @@ header form.search-form button{
 }
 
 .light-mode .hero-nujuma-btn-touch {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .light-mode .hero-nujuma-btn-touch:hover {
@@ -4092,7 +4118,7 @@ header form.search-form button{
   left: 0;
   right: 0;
   height: 2px;
-  background: #C9A84C;
+  background: currentColor;
 }
 
 .about-harla-tab:first-child.active::after {
@@ -4444,7 +4470,7 @@ header form.search-form button{
   background: rgba(0, 0, 0, 0.4);
   color: rgba(255, 255, 255, 0.5);
   padding: 20px 28px;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: 500;
@@ -4594,6 +4620,7 @@ header form.search-form button{
   font-size: 18px;
   transition: 0.5s;
   display: inline-block;
+  padding: 6px 12px 6px 0;
 }
 
 .approach-grid-arrow:hover {
@@ -6291,15 +6318,6 @@ button.read-more{
   margin-left: 32px;
 }
 
-@media(min-width: 992px){
-  .timeline-item .icon.h2{
-    text-shadow: 2px 0 var(--black-30);
-  }
-
-  .timeline-item.slick-current .icon.h2{
-    text-shadow: 2px 0 var(--heading-color);
-  }
-}
 
 .timeline-item.slick-current .icon.h2 {
   color:var(--heading-color);
@@ -6310,18 +6328,14 @@ button.read-more{
   color: white;
 }
 
-.light-mode .timeline-item .icon.h2{
-  text-shadow: 2px 0 var(--black-30);
-}
+
 
 .light-mode .timeline-item.slick-current .icon.h2{
   color: var(--black-100);
-  text-shadow: 2px 0 var(--black-100);
 }
 
 @media(max-width: 991px){
   .light-mode .timeline-item.slick-current .icon.h2{
-    text-shadow: unset;
   }
 }
 
@@ -6461,14 +6475,6 @@ button.read-more{
   color: var(--black-100);
 }
 
-@media(min-width: 992px){
-  .testimonial-item .author-text {
-    text-shadow: 2px 0 var(--black-30);
-  }
-  .light-mode .testimonial-item .author-text{
-    text-shadow: 2px 0 var(--black-100);
-  }
-}
 
 .testimonial-item h5 {
   margin-bottom: 8px;
@@ -6534,15 +6540,6 @@ button.read-more{
   color:var(--heading-color);
 }
 
-@media(min-width: 992px){
-  .cta-area h2{
-    text-shadow: 2px 0 var(--black-30);
-  }
-
-  h2 .white{
-    text-shadow: 2px 0 white;
-  }
-}
 
 .cta-content {
   margin-top: 16px;
@@ -6730,15 +6727,21 @@ button.read-more{
 }
 
 .primary-readmore{
-  background: var(--primary-color);
-  color: var(--black-100);
-  padding: 16px 32px;
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--heading-color);
+  color: var(--heading-color);
+  padding: 15px 32px;
   margin-top: 32px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .primary-readmore:hover{
-  background: var(--black-100);
-  color: var(--accent-text);
+  background: var(--heading-color);
+  color: var(--black-100);
 }
 
 .blog-content .left{
@@ -7605,7 +7608,7 @@ blockquote cite.name {
 
 .contact-nujuma-meta-label {
   color: var(--black-40);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: 500;
@@ -7627,7 +7630,7 @@ blockquote cite.name {
 .contact-nujuma-field label {
   display: block;
   color: var(--black-40);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: 500;
@@ -7645,7 +7648,6 @@ blockquote cite.name {
   padding: 10px 0;
   font-family: inherit;
   transition: border-color 0.5s;
-  outline: none;
 }
 
 .contact-nujuma-field input::placeholder,
@@ -7655,7 +7657,7 @@ blockquote cite.name {
 
 .contact-nujuma-field input:focus,
 .contact-nujuma-field textarea:focus {
-  border-bottom-color: #C9A84C;
+  border-bottom-color: var(--heading-color);
 }
 
 .contact-nujuma-field textarea {
@@ -7671,7 +7673,7 @@ blockquote cite.name {
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: transparent;
   color: #fff;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -7682,8 +7684,9 @@ blockquote cite.name {
 }
 
 .contact-nujuma-submit:hover {
-  border-color: #C9A84C;
-  color: var(--accent-text);
+  border-color: var(--heading-color);
+  background: var(--heading-color);
+  color: var(--black-100);
 }
 
 .contact-nujuma-submit:disabled {
@@ -7729,10 +7732,7 @@ blockquote cite.name {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-.light-mode .contact-nujuma-submit:hover {
-  color: var(--accent-text);
-  border-color: #C9A84C;
-}
+
 
 /* Responsive contact */
 @media only screen and (max-width: 991px) {
@@ -7814,19 +7814,28 @@ blockquote cite.name {
 /*******************************************************/
 /******************** ## Main Footer *******************/
 /*******************************************************/
-.footer-top h2{
+.footer-cta{
    color: var(--black-30);
    margin-bottom: 0;
-   font-weight: 400;
+   font-weight: 300;
    letter-spacing: -1px;
+   font-size: 56px;
+   line-height: 1.2;
+   text-wrap: balance;
 }
 
-.footer-top h2 em{
-   font-weight: 500;
+.footer-cta em{
+   font-weight: 400;
+   font-style: italic;
+   color: var(--heading-color);
 }
 
-.footer-top .white{
-   font-weight: 500;
+.light-mode .footer-cta em{
+   color: var(--black-20);
+}
+
+.footer-cta .white{
+   font-weight: 400;
 }
 
 .footer-bottom{
@@ -7851,10 +7860,15 @@ blockquote cite.name {
   color: var(--black-30);
 }
 
-@media(min-width: 992px){
-  .footer-top h2,
-  .footer-top .white{
-    text-shadow: none;
+@media(max-width: 991px){
+  .footer-cta{
+    font-size: 36px;
+  }
+}
+
+@media(max-width: 767px){
+  .footer-cta{
+    font-size: 28px;
   }
 }
 
@@ -7891,12 +7905,23 @@ blockquote cite.name {
   bottom: 76px;
   width: 210px;
   height: 46px;
-  letter-spacing: -2px;
-  font-weight: 900;
+  letter-spacing: -1px;
+  font-weight: 500;
 }
 
 .footer-bottom .content .links li{
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+}
+
+.footer-bottom .content .links a,
+.footer-bottom .content .info a{
+  display: inline-block;
+  padding-block: 4px;
+}
+
+.footer-social a{
+  display: inline-block;
+  padding: 6px 0;
 }
 
 .footer-bottom .content .links li:last-child{
@@ -8331,7 +8356,6 @@ blockquote cite.name {
 .light-mode .approach-grid h2 em,
 .light-mode .podcast-section h2 em,
 .light-mode .banner-area h1 em,
-.light-mode .footer-top h2 em,
 .light-mode .contact-nujuma-heading em {
   color: var(--black-20);
 }
@@ -8383,6 +8407,668 @@ blockquote cite.name {
 .light-mode .primary-readmore:hover {
   background: var(--black-100);
   color: #fff;
+}
+
+
+/*******************************************************/
+/************ ## Header brand & mobile menu ************/
+/*******************************************************/
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand img {
+  height: 45px;
+  width: auto;
+}
+
+.brand-wordmark {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+  font-size: 22px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.light-mode .brand-wordmark {
+  color: var(--harla-blue);
+}
+
+.mobile-logo .brand img {
+  height: 32px;
+}
+
+.mobile-logo .brand-wordmark {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.theme-toggle .theme-icon {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 8px;
+  font: inherit;
+}
+
+.menu-close,
+.menu-backdrop {
+  display: none;
+}
+
+@media only screen and (max-width: 991px) {
+  .menu-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 22, 40, 0.6);
+    z-index: 998;
+  }
+
+  .main-menu .navbar-collapse.is-open {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(320px, 85vw);
+    padding: 88px 24px 32px;
+    background: var(--black-120);
+    z-index: 999;
+    overflow-y: auto;
+    max-height: none;
+  }
+
+  .light-mode .main-menu .navbar-collapse.is-open {
+    background: #fff;
+  }
+
+  .main-menu .navbar-collapse.is-open .menu-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid var(--black-60);
+    color: var(--heading-color);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .light-mode .main-menu .navbar-collapse.is-open .menu-close {
+    color: var(--black-100);
+    border-color: var(--black-30);
+  }
+
+  .main-menu .navbar-collapse.is-open .navigation > li > a {
+    padding: 14px 0;
+    font-size: 16px;
+  }
+}
+
+/*******************************************************/
+/******************* ## Selected work ******************/
+/*******************************************************/
+.selected-work-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 56px;
+}
+
+.selected-work-head h2 {
+  margin-bottom: 0;
+}
+
+.selected-work-head .read-more {
+  flex-shrink: 0;
+  margin-bottom: 8px;
+}
+
+.selected-work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+}
+
+.selected-work-tile {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.selected-work-tile.is-wide {
+  grid-column: span 2;
+}
+
+.selected-work-image {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--black-110);
+}
+
+.selected-work-tile.is-wide .selected-work-image {
+  aspect-ratio: 16 / 9;
+}
+
+.selected-work-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.selected-work-tile:hover .selected-work-image img,
+.selected-work-tile:focus-visible .selected-work-image img {
+  transform: scale(1.03);
+}
+
+.selected-work-caption {
+  padding-top: 16px;
+}
+
+.selected-work-caption span {
+  display: block;
+}
+
+.selected-work-category {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--black-40);
+  margin-bottom: 6px;
+}
+
+.selected-work-client {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--heading-color);
+}
+
+.selected-work-meta {
+  font-size: 13px;
+  color: var(--black-40);
+  margin-top: 2px;
+}
+
+.light-mode .selected-work {
+  background: #fff;
+}
+
+.light-mode .selected-work-client {
+  color: var(--black-100);
+}
+
+.light-mode .selected-work-category,
+.light-mode .selected-work-meta {
+  color: var(--black-60);
+}
+
+.light-mode .selected-work-image {
+  background: var(--black-10);
+}
+
+/*******************************************************/
+/******************* ## Process steps ******************/
+/*******************************************************/
+.process-steps {
+  background: var(--black-110);
+}
+
+.process-steps {
+  background: var(--black-110);
+}
+
+.process-steps-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: end;
+  margin-bottom: 64px;
+}
+
+.process-steps-head h2 {
+  margin-bottom: 0;
+}
+
+.process-steps-head p {
+  max-width: 460px;
+  justify-self: end;
+  margin: 0;
+  color: var(--black-30);
+}
+
+.process-steps-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--black-90);
+  border-left: 1px solid var(--black-90);
+}
+
+.process-step {
+  padding: 40px 32px 44px;
+  border-right: 1px solid var(--black-90);
+  border-bottom: 1px solid var(--black-90);
+}
+
+.process-step-number {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--black-40);
+  margin-bottom: 20px;
+}
+
+.process-step-title {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.process-step-desc {
+  color: var(--black-30);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.process-steps-cta {
+  margin-top: 56px;
+}
+
+.light-mode .process-steps {
+  background: var(--black-10) !important;
+}
+
+.light-mode .process-steps-head p,
+.light-mode .process-step-desc {
+  color: var(--black-90);
+}
+
+.light-mode .process-step-number {
+  color: var(--black-60);
+}
+
+.light-mode .process-steps-list,
+.light-mode .process-step {
+  border-color: var(--black-30);
+}
+
+/*******************************************************/
+/******************* ## Error pages ********************/
+/*******************************************************/
+.error-page {
+  padding: 160px 0 140px;
+  min-height: 60vh;
+}
+
+.error-page h1 {
+  margin-bottom: 20px;
+}
+
+.error-page p {
+  max-width: 560px;
+  color: var(--black-30);
+  margin-bottom: 40px;
+}
+
+.error-page code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  color: var(--heading-color);
+}
+
+.error-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 32px;
+}
+
+.error-page-actions .theme-btn {
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.light-mode .error-page {
+  background: #fff;
+}
+
+.light-mode .error-page p {
+  color: var(--black-90);
+}
+
+/*******************************************************/
+/************* ## Contact states & light mode **********/
+/*******************************************************/
+.contact-nujuma-hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-nujuma-error {
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(231, 76, 60, 0.6);
+  color: #f2b3ab;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.contact-nujuma-error a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.contact-nujuma-success {
+  padding: 40px 0;
+}
+
+.contact-nujuma-success h2 {
+  margin: 16px 0 12px;
+}
+
+.contact-nujuma-success p {
+  color: var(--black-30);
+  margin-bottom: 24px;
+}
+
+.contact-nujuma-success .read-more {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+.contact-nujuma-field label span {
+  color: var(--black-40);
+}
+
+/* Light mode: contact honours the toggle like every other page */
+.light-mode .contact-nujuma {
+  background: #fff;
+}
+
+.light-mode .contact-nujuma-label,
+.light-mode .contact-nujuma-meta-label,
+.light-mode .contact-nujuma-field label {
+  color: var(--black-60);
+}
+
+.light-mode .contact-nujuma-heading {
+  color: var(--black-100) !important;
+}
+
+.light-mode .contact-nujuma-heading em {
+  color: var(--harla-blue);
+}
+
+.light-mode .contact-nujuma-desc,
+.light-mode .contact-nujuma-meta p,
+.light-mode .contact-nujuma-success p {
+  color: var(--black-90);
+}
+
+.light-mode .contact-nujuma-meta p a {
+  color: var(--black-100);
+}
+
+.light-mode .contact-nujuma-divider {
+  background: var(--black-30);
+  border-color: var(--black-30);
+}
+
+.light-mode .contact-nujuma-field input,
+.light-mode .contact-nujuma-field textarea {
+  color: var(--black-100);
+  border-bottom-color: var(--black-30);
+}
+
+.light-mode .contact-nujuma-field input::placeholder,
+.light-mode .contact-nujuma-field textarea::placeholder {
+  color: var(--black-50);
+}
+
+.light-mode .contact-nujuma-field input:focus,
+.light-mode .contact-nujuma-field textarea:focus {
+  border-bottom-color: var(--black-100);
+}
+
+.light-mode .contact-nujuma-submit {
+  color: var(--black-100);
+  border-color: var(--black-100);
+}
+
+.light-mode .contact-nujuma-submit:hover {
+  background: var(--black-100);
+  color: #fff;
+}
+
+.light-mode .contact-nujuma-error {
+  color: #a33a2f;
+  border-color: rgba(179, 38, 30, 0.5);
+}
+
+.light-mode .contact-nujuma-error a {
+  color: var(--black-100);
+}
+
+.light-mode .contact-nujuma-success h2 {
+  color: var(--black-100) !important;
+}
+
+/*******************************************************/
+/************ ## Project gallery additions *************/
+/*******************************************************/
+.project-gallery-view {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--black-40);
+  border-bottom: 1px solid var(--black-80);
+  padding-bottom: 2px;
+  transition: 0.5s;
+}
+
+.project-gallery-item:hover .project-gallery-view,
+.project-gallery-item:focus-visible .project-gallery-view {
+  color: var(--heading-color);
+  border-color: var(--heading-color);
+}
+
+.project-gallery-also {
+  margin: 32px 0 0;
+  font-size: 14px;
+  color: var(--black-40);
+}
+
+.light-mode .project-gallery-view,
+.light-mode .project-gallery-also {
+  color: var(--black-60);
+}
+
+.light-mode .project-gallery-item:hover .project-gallery-view {
+  color: var(--black-100);
+  border-color: var(--black-100);
+}
+
+/*******************************************************/
+/*************** ## Footer: mobile stack ***************/
+/*******************************************************/
+.to-top {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+@media only screen and (max-width: 767px) {
+  .main-footer .footer-bottom .row {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .main-footer .footer-bottom .row > div {
+    width: 100%;
+    max-width: 100%;
+    flex: none;
+    padding: 0;
+  }
+
+  .main-footer .copyright-area {
+    order: 3;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--black-90);
+    font-size: 13px;
+  }
+
+  .main-footer .footer-bottom-text {
+    width: 100%;
+    margin: 0;
+    height: auto;
+  }
+
+  .main-footer .footer-bottom-text .content {
+    float: none;
+    width: 100%;
+    display: block !important;
+  }
+
+  .main-footer .footer-bottom .h4-rotate {
+    position: static;
+    transform: none;
+    width: auto;
+    height: auto;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    color: var(--black-40);
+    margin-bottom: 12px;
+  }
+
+  .main-footer .footer-bottom-text .content .info,
+  .main-footer .footer-bottom-text .content .links {
+    margin: 0;
+    width: 100%;
+  }
+
+  .main-footer .sm-none {
+    display: none;
+  }
+
+  .light-mode .main-footer .copyright-area {
+    border-color: var(--black-80);
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .selected-work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .selected-work-tile.is-wide {
+    grid-column: span 2;
+  }
+
+  .process-steps-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .process-steps-head,
+  .selected-work-head {
+    grid-template-columns: 1fr;
+    display: block;
+  }
+
+  .process-steps-head p {
+    margin-top: 16px;
+    justify-self: start;
+  }
+
+  .selected-work-head .read-more {
+    margin-top: 16px;
+    display: inline-block;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .selected-work-grid,
+  .process-steps-list {
+    grid-template-columns: 1fr;
+  }
+
+  .selected-work-tile.is-wide {
+    grid-column: auto;
+  }
+
+  .process-step {
+    padding: 28px 24px;
+  }
+
+  .error-page {
+    padding: 100px 0 80px;
+  }
+}
+
+
+/* Filled button: readable text in both modes (template rule set it white-on-white) */
+.theme-btn,
+a.theme-btn {
+  color: var(--black-100);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid var(--heading-color);
+}
+
+.theme-btn:hover,
+a.theme-btn:hover {
+  background: transparent;
+  color: var(--heading-color);
+}
+
+.light-mode .theme-btn,
+.light-mode a.theme-btn {
+  background: var(--black-100);
+  border-color: var(--black-100);
+  color: #fff;
+}
+
+.light-mode .theme-btn:hover,
+.light-mode a.theme-btn:hover {
+  background: transparent;
+  color: var(--black-100);
+}
+
+.light-mode .process-steps h2,
+.light-mode .process-step-title,
+.light-mode .selected-work h2,
+.light-mode .error-page h1 {
+  color: var(--black-100);
 }
 
 /* Reduced Motion */

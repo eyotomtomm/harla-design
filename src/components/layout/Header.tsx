@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useScrollHeader } from '@/hooks/useScrollHeader';
 import { useTheme } from '@/hooks/useTheme';
 import ThemeToggle from '@/components/shared/ThemeToggle';
@@ -14,29 +15,39 @@ const navItems = [
   { label: 'Contact', href: '/contact' },
 ];
 
-const logoStyle: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '10px',
-  textDecoration: 'none',
-};
-
-const harlaTextStyle: React.CSSProperties = {
-  fontFamily: '"Montserrat", sans-serif',
-  fontWeight: 200,
-  fontSize: '22px',
-  letterSpacing: '3px',
-  textTransform: 'uppercase',
-};
+function isActive(pathname: string, href: string) {
+  return href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export default function Header() {
   const { isFixed } = useScrollHeader();
   const { theme } = useTheme();
-  const [searchOpen, setSearchOpen] = useState(false);
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Escape closes the menu; lock body scroll while it is open.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = previous;
+    };
+  }, [mobileOpen]);
+
   const logoSrc = theme === 'light' ? '/images/logos/logo-light.png' : '/images/logos/logo-dark.png';
-  const harlaColor = theme === 'light' ? '#3D5A80' : '#FFFFFF';
+
+  const brand = (
+    <Link href="/" className="brand" onClick={() => setMobileOpen(false)}>
+      <img src={logoSrc} alt="" width={45} height={40} />
+      <span className="brand-wordmark">Harla Design</span>
+    </Link>
+  );
 
   return (
     <header className={`main-header${isFixed ? ' fixed-header' : ''}`}>
@@ -44,27 +55,20 @@ export default function Header() {
         <div className="container clearfix">
           <div className="header-inner rel d-flex align-items-center">
             <div className="logo-outer">
-              <div className="logo">
-                <Link href="/" style={logoStyle}>
-                  <img src={logoSrc} alt="Harla Design" title="Harla Design" style={{ height: '45px', width: 'auto' }} />
-                  <span style={{ ...harlaTextStyle, color: harlaColor }}>Harla Design</span>
-                </Link>
-              </div>
+              <div className="logo">{brand}</div>
             </div>
 
             <div className="nav-outer ms-auto clearfix">
-              <nav className="main-menu navbar-expand-lg">
+              <nav className="main-menu navbar-expand-lg" aria-label="Main">
                 <div className="navbar-header py-10">
-                  <div className="mobile-logo">
-                    <Link href="/" style={logoStyle}>
-                      <img src={logoSrc} alt="Harla Design" title="Harla Design" style={{ height: '35px', width: 'auto' }} />
-                      <span style={{ ...harlaTextStyle, fontSize: '18px', color: harlaColor }}>Harla Design</span>
-                    </Link>
-                  </div>
+                  <div className="mobile-logo">{brand}</div>
                   <button
                     type="button"
                     className="navbar-toggle"
-                    onClick={() => setMobileOpen(!mobileOpen)}
+                    aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={mobileOpen}
+                    aria-controls="site-navigation"
+                    onClick={() => setMobileOpen(open => !open)}
                   >
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
@@ -72,34 +76,41 @@ export default function Header() {
                   </button>
                 </div>
 
-                <div className={`navbar-collapse${mobileOpen ? '' : ' collapse'} clearfix`}>
+                {mobileOpen && (
+                  <div className="menu-backdrop" onClick={() => setMobileOpen(false)} aria-hidden="true" />
+                )}
+
+                <div id="site-navigation" className={`navbar-collapse${mobileOpen ? ' is-open' : ' collapse'} clearfix`}>
+                  <button
+                    type="button"
+                    className="menu-close"
+                    aria-label="Close menu"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                   <ul className="navigation clearfix">
-                    {navItems.map((item) => (
-                      <li key={item.href}>
-                        <Link href={item.href} onClick={() => setMobileOpen(false)}>{item.label}</Link>
-                      </li>
-                    ))}
+                    {navItems.map((item) => {
+                      const active = isActive(pathname, item.href);
+                      return (
+                        <li key={item.href} className={active ? 'current' : undefined}>
+                          <Link
+                            href={item.href}
+                            aria-current={active ? 'page' : undefined}
+                            onClick={() => setMobileOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </nav>
             </div>
 
-            <div className="search-btns" onClick={() => setSearchOpen(!searchOpen)}>
-              <span className="search-icon"><i className="far fa-search"></i></span>
-            </div>
-
             <ThemeToggle />
           </div>
-
-          <form
-            className={`search-project search-form mt-96${searchOpen ? ' current' : ''}`}
-            id="project-search"
-            action="/search"
-            method="GET"
-          >
-            <input type="search" name="q" required placeholder="Type to search..." />
-            <button type="submit"><i className="fa fa-search"></i></button>
-          </form>
         </div>
       </div>
     </header>

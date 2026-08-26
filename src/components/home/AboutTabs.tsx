@@ -62,7 +62,7 @@ export default function AboutTabs() {
       <div className="container">
         {/* Section header */}
         <div className="about-harla-header">
-          <span className="sub-title mb-16">WHO WE ARE</span>
+          <span className="sub-title mb-16">Who we are</span>
           <h2>Built on conviction,<br /><em>delivered with care.</em></h2>
           <p className="about-harla-intro">
             We bring strategy to architectural projects, helping clients make better decisions,
@@ -100,7 +100,7 @@ export default function AboutTabs() {
         {/* Pillars */}
         <div className="about-harla-pillars">
           <div className="about-harla-pillars-header">
-            <span className="sub-title mb-16">OUR PILLARS</span>
+            <span className="sub-title mb-16">Our pillars</span>
           </div>
           <div className="about-harla-pillars-grid">
             {pillars.map((pillar, i) => (

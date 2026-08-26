@@ -1,20 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+import { requireAdmin, readJson, pick, badRequest, dbError } from '@/lib/require-admin';
+
+const FIELDS = ['siteName', 'logo', 'logoBlack', 'logoWhite', 'favicon', 'contactPhone', 'contactEmail', 'contactAddress', 'contactAddress2', 'mapEmbedUrl', 'footerText1', 'footerText2', 'copyrightText', 'socialDribbble', 'socialFacebook', 'socialInstagram', 'socialLinkedin'];
 
 export async function GET() {
-  let settings = await prisma.siteSettings.findFirst();
-  if (!settings) {
-    settings = await prisma.siteSettings.create({
-      data: { mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d96776.56071496992!2d-74.02420878160657!3d40.71212692665102!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1676287097391!5m2!1sen!2sbd', footerText1: 'The greatest architecture & interior design company, best in its industry.' },
-    });
+  try {
+    const settings = await prisma.siteSettings.findFirst();
+    // Reads never create rows; return an empty object when nothing is configured.
+    return NextResponse.json(settings ?? {});
+  } catch {
+    return dbError();
   }
-  return NextResponse.json(settings);
 }
 
 export async function PUT(request: NextRequest) {
-  const data = await request.json();
-  const existing = await prisma.siteSettings.findFirst();
-  if (!existing) return NextResponse.json({ error: 'Not found' }, { status: 404 });
-  const settings = await prisma.siteSettings.update({ where: { id: existing.id }, data });
-  return NextResponse.json(settings);
+  const denied = await requireAdmin();
+  if (denied) return denied;
+  const body = await readJson(request);
+  if (!body) return badRequest('Invalid JSON');
+  const data = pick(body, FIELDS);
+  try {
+    const existing = await prisma.siteSettings.findFirst();
+    const settings = existing
+      ? await prisma.siteSettings.update({ where: { id: existing.id }, data })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      : await prisma.siteSettings.create({ data: { mapEmbedUrl: '', footerText1: '', ...(data as any) } });
+    return NextResponse.json(settings);
+  } catch {
+    return dbError();
+  }
 }

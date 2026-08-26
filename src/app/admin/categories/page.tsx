@@ -1,72 +1,71 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { submitJson, StatusMessage, type SaveState } from '@/components/admin/useAdminList';
 
 interface Category { id: number; name: string; slug: string; }
 
 export default function CategoriesAdmin() {
   const [items, setItems] = useState<Category[]>([]);
-  const [editing, setEditing] = useState<Category | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({ name: '', slug: '' });
+  const [status, setStatus] = useState<SaveState>({ kind: 'idle' });
 
-  useEffect(() => { fetchItems(); }, []);
-
-  const fetchItems = async () => {
-    const res = await fetch('/api/categories');
-    setItems(await res.json());
+  const load = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/categories', { cache: 'no-store' });
+      if (!res.ok) throw new Error(`Request failed (${res.status})`);
+      const data = await res.json();
+      setItems(Array.isArray(data?.projectCategories) ? data.projectCategories : []);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not load categories');
+    } finally {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => void load(), 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSave = async () => {
-    const method = editing ? 'PUT' : 'POST';
-    const body = editing ? { id: editing.id, ...form } : form;
-    await fetch('/api/categories', { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    setEditing(null);
-    setForm({ name: '', slug: '' });
-    fetchItems();
-  };
-
-  const handleDelete = async (id: number) => {
-    if (!confirm('Delete?')) return;
-    await fetch('/api/categories', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) });
-    fetchItems();
-  };
-
-  const startEdit = (item: Category) => {
-    setEditing(item);
-    setForm({ name: item.name, slug: item.slug });
+    const result = await submitJson('/api/categories', 'POST', form);
+    setStatus(result);
+    if (result.kind === 'success') {
+      setForm({ name: '', slug: '' });
+      void load();
+    }
   };
 
   return (
     <>
       <div className="admin-header">
-        <h1>Categories</h1>
-        <button className="admin-btn primary" onClick={() => { setEditing(null); setForm({ name: '', slug: '' }); }}>Add New</button>
+        <h1>Project Categories</h1>
       </div>
       <div className="admin-card">
-        <h3>{editing ? 'Edit Category' : 'Add Category'}</h3>
+        <h3>Add Category</h3>
         <div className="admin-form">
-          <div className="form-group"><label>Name</label><input type="text" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} /></div>
-          <div className="form-group"><label>Slug</label><input type="text" value={form.slug} onChange={e => setForm(f => ({ ...f, slug: e.target.value }))} /></div>
-          <button className="admin-btn primary" onClick={handleSave}>{editing ? 'Update' : 'Create'}</button>
-          {editing && <button className="admin-btn" style={{ marginLeft: '8px' }} onClick={() => setEditing(null)}>Cancel</button>}
+          <div className="form-group"><label htmlFor="cat-name">Name</label><input id="cat-name" type="text" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} /></div>
+          <div className="form-group"><label htmlFor="cat-slug">Slug</label><input id="cat-slug" type="text" value={form.slug} onChange={e => setForm(f => ({ ...f, slug: e.target.value }))} /></div>
+          <button className="admin-btn primary" onClick={handleSave} disabled={!form.name || !form.slug}>Create</button>
+          <StatusMessage state={status} />
         </div>
       </div>
       <div className="admin-card">
         <h3>All Categories</h3>
-        <table className="admin-table">
-          <thead><tr><th>Name</th><th>Slug</th><th>Actions</th></tr></thead>
-          <tbody>
-            {items.map(item => (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{item.slug}</td>
-                <td>
-                  <button className="admin-btn small" onClick={() => startEdit(item)}>Edit</button>
-                  <button className="admin-btn small danger" style={{ marginLeft: '4px' }} onClick={() => handleDelete(item.id)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {loading ? <p className="admin-muted">Loading…</p> : error ? <p className="admin-alert error" role="alert">{error}</p> : items.length === 0 ? <p className="admin-muted">No categories yet.</p> : (
+          <table className="admin-table">
+            <thead><tr><th>Name</th><th>Slug</th></tr></thead>
+            <tbody>
+              {items.map(item => (
+                <tr key={item.id}><td>{item.name}</td><td>{item.slug}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   );

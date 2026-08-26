@@ -32,11 +32,11 @@ export default function HeroCarousel() {
           </div>
 
           <div className="hero-nujuma-right">
-            <Link href="/#services" className="hero-nujuma-btn-services">
-              View Services
+            <Link href="/contact" className="hero-nujuma-btn-services">
+              Get in touch
             </Link>
-            <Link href="/contact" className="hero-nujuma-btn-touch">
-              Get In Touch
+            <Link href="/#services" className="hero-nujuma-btn-touch">
+              View services
             </Link>
           </div>
         </div>
@@ -45,7 +45,7 @@ export default function HeroCarousel() {
       <div className="hero-nujuma-bottom">
         <div className="container">
           <p>
-            An advisory focused on strategy, design and delivery and user experience
+            An advisory focused on strategy, design, delivery and user experience
             &mdash; operating across Africa and the GCC
           </p>
         </div>
