@@ -4,6 +4,7 @@
  * the table is empty — so the public site always renders.
  */
 import 'server-only';
+import { databaseUrl } from '@/lib/prisma';
 import { projectCategories as defaultGallery, type ProjectCategory } from '@/data/projects';
 import { defaultApproach, type ApproachItem } from '@/data/approach';
 import { defaultAbout, type AboutCopy } from '@/data/about';
@@ -11,7 +12,7 @@ import { defaultWorkSteps, type ProcessStep } from '@/data/process';
 import type { FooterSettings } from '@/components/layout/Footer';
 
 async function db() {
-  if (!process.env.DATABASE_URL) return null;
+  if (!databaseUrl()) return null;
   try {
     return (await import('@/lib/prisma')).default;
   } catch {
