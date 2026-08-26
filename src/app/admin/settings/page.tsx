@@ -3,13 +3,17 @@ import { useEffect, useState } from 'react';
 import { submitJson, StatusMessage, type SaveState } from '@/components/admin/useAdminList';
 
 const FIELDS = [
-  { key: 'siteName', label: 'Site Name' },
+  { key: 'siteName', label: 'Site name' },
   { key: 'contactPhone', label: 'Phone' },
   { key: 'contactEmail', label: 'Email' },
-  { key: 'contactAddress', label: 'Address Line 1' },
-  { key: 'contactAddress2', label: 'Address Line 2' },
-  { key: 'copyrightText', label: 'Copyright Text' },
+  { key: 'contactAddress', label: 'Address line 1' },
+  { key: 'contactAddress2', label: 'Address line 2' },
+  { key: 'footerText1', label: 'Footer headline — wrap the italic word in *asterisks*' },
+  { key: 'footerText2', label: 'Footer second line (starts with “Get in touch” to keep the link)' },
+  { key: 'copyrightText', label: 'Copyright text (leave empty for the automatic year)' },
   { key: 'socialInstagram', label: 'Instagram URL' },
+  { key: 'socialSpotify', label: 'Spotify show URL' },
+  { key: 'socialSubstack', label: 'Substack URL' },
 ];
 
 export default function SettingsAdmin() {
@@ -36,10 +40,10 @@ export default function SettingsAdmin() {
   return (
     <>
       <div className="admin-header">
-        <h1>Site Settings</h1>
-        <button className="admin-btn primary" onClick={handleSave}>Save Changes</button>
+        <h1>Site settings</h1>
+        <button className="admin-btn primary" onClick={handleSave}>Save changes</button>
       </div>
-      <p className="admin-alert success">These values appear in the site footer (contact block and copyright line).</p>
+      <p className="admin-alert success">These values appear in the site footer (contact block, CTA and copyright line).</p>
       {loadError && <p className="admin-alert error" role="alert">{loadError}</p>}
       <StatusMessage state={status} />
       <div className="admin-card">

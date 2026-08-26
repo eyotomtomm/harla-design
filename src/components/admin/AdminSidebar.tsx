@@ -7,12 +7,12 @@ import { signOut } from 'next-auth/react';
 
 const sidebarLinks = [
   { href: '/admin', label: 'Dashboard', icon: 'fa-tachometer-alt' },
-  { href: '/admin/about', label: 'About', icon: 'fa-info-circle' },
-  { href: '/admin/services', label: 'Services', icon: 'fa-cogs' },
-  { href: '/admin/projects', label: 'Projects', icon: 'fa-project-diagram' },
-  { href: '/admin/faq', label: 'FAQ', icon: 'fa-question-circle' },
-  { href: '/admin/work-process', label: 'Work Process', icon: 'fa-tasks' },
-  { href: '/admin/categories', label: 'Categories', icon: 'fa-tags' },
+  { href: '/admin/gallery', label: 'Projects gallery', icon: 'fa-images' },
+  { href: '/admin/categories', label: 'Gallery rows', icon: 'fa-tags' },
+  { href: '/admin/approach', label: 'Our approach', icon: 'fa-compass' },
+  { href: '/admin/about', label: 'About copy', icon: 'fa-info-circle' },
+  { href: '/admin/work-process', label: 'Process steps', icon: 'fa-tasks' },
+  { href: '/admin/messages', label: 'Messages', icon: 'fa-envelope' },
   { href: '/admin/settings', label: 'Settings', icon: 'fa-cog' },
 ];
 

@@ -50,13 +50,13 @@ export default function ServiceCarousel() {
 
           <div className="services-fullbleed-nav">
             <button type="button" onClick={handlePrev} aria-label="Previous">
-              <i className="fa fa-long-arrow-left"></i>
+              <i className="fas fa-long-arrow-alt-left"></i>
             </button>
             <span className="services-fullbleed-counter">
               {num} / {String(items.length).padStart(2, '0')}
             </span>
             <button type="button" onClick={handleNext} aria-label="Next">
-              <i className="fa fa-long-arrow-right"></i>
+              <i className="fas fa-long-arrow-alt-right"></i>
             </button>
           </div>
         </div>

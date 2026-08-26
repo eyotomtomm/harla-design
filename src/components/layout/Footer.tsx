@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { splitAccent } from '@/data/about';
 
 export interface FooterSettings {
   contactAddress?: string;
@@ -46,15 +47,17 @@ export default function Footer({ settings }: { settings?: FooterSettings }) {
           <div className="container">
             <div className="col-lg-10">
               <p className="footer-cta">
-                {s.footerText1 || (
+                {s.footerText1 ? (
+                  (() => { const t = splitAccent(s.footerText1); return <>{t.before}{t.accent && <em>{t.accent}</em>}{t.after}</>; })()
+                ) : (
                   <>Have a project in mind? Let&apos;s build something <em>remarkable</em> together.</>
                 )}
               </p>
               <p className="footer-cta">
-                {s.footerText2 || (
+                {s.footerText2 && !s.footerText2.startsWith('Get in touch') ? s.footerText2 : (
                   <>
                     <Link href="/contact" className="white" style={{ textDecoration: 'underline', textUnderlineOffset: '8px' }}>Get in touch</Link>
-                    {' '}— we&apos;re ready when you are.
+                    {' '}{(s.footerText2 || "Get in touch — we're ready when you are.").replace(/^Get in touch\s*/, '')}
                   </>
                 )}
               </p>

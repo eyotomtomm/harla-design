@@ -25,18 +25,26 @@ The public site works without a database (content is in code). The admin
 
 ## Database
 
+Set `DATABASE_URL` to a MySQL database, then:
+
 ```bash
-npx prisma migrate deploy   # apply migrations
-npm run seed                # admin user + real site content (only fills empty tables)
+npx prisma migrate deploy   # creates the tables (prisma/migrations)
+npm run seed                # admin user + the real site content (only fills empty tables)
 ```
+
+Without a database the public site still renders from the defaults in
+`src/data/`; the admin needs the database.
 
 ## Content
 
 - **Projects gallery:** `src/data/projects.ts` — add an item to a category row.
 - **Approach / who we are / hero copy:** the components in `src/components/home`.
-- **Admin (`/admin`):** Work Process steps and Settings (footer contact details)
-  are live on the site. Other admin sections are stored but not yet read by the
-  public pages.
+- **Admin (`/admin`):** gallery images and rows, approach items, About copy,
+  process steps, contact-form messages and footer settings. Every section is
+  live on the public site (pages revalidate within a minute). While a table is
+  empty the site falls back to the defaults in `src/data/`.
+- **Thought Leadership:** latest Substack posts and the podcast name are
+  fetched from the live feeds and cached for an hour.
 
 ## Build & deploy
 

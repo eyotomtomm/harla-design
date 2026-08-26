@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { requireAdmin, readJson, pick, badRequest, dbError } from '@/lib/require-admin';
 
-const FIELDS = ['siteName', 'logo', 'logoBlack', 'logoWhite', 'favicon', 'contactPhone', 'contactEmail', 'contactAddress', 'contactAddress2', 'mapEmbedUrl', 'footerText1', 'footerText2', 'copyrightText', 'socialDribbble', 'socialFacebook', 'socialInstagram', 'socialLinkedin'];
+const FIELDS = ['siteName', 'contactPhone', 'contactEmail', 'contactAddress', 'contactAddress2', 'footerText1', 'footerText2', 'copyrightText', 'socialInstagram', 'socialSpotify', 'socialSubstack'];
 
 export async function GET() {
   try {
@@ -25,7 +25,7 @@ export async function PUT(request: NextRequest) {
     const settings = existing
       ? await prisma.siteSettings.update({ where: { id: existing.id }, data })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      : await prisma.siteSettings.create({ data: { mapEmbedUrl: '', footerText1: '', ...(data as any) } });
+      : await prisma.siteSettings.create({ data: data as any });
     return NextResponse.json(settings);
   } catch {
     return dbError();

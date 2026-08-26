@@ -85,7 +85,7 @@ export default function ContactPage() {
                 <h2>Thanks{sentName ? `, ${sentName}` : ''}.</h2>
                 <p>We reply to every enquiry, usually within two working days.</p>
                 <button type="button" className="read-more" onClick={() => setStatus('idle')}>
-                  Send another message <i className="fa fa-long-arrow-right"></i>
+                  Send another message <i className="fas fa-long-arrow-alt-right"></i>
                 </button>
               </div>
             ) : (

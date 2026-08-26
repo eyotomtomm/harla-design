@@ -1,5 +1,5 @@
 /* Vendor CSS - loaded in original HTML order */
-@import './vendor/fontawesome-5.14.0.min.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
 @import './vendor/bootstrap.min.css';
 @import './vendor/animate.min.css';
 @import './vendor/slick.min.css';

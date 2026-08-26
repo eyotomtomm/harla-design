@@ -1,7 +1,11 @@
 import type { Metadata } from 'next';
 import PageBanner from '@/components/layout/PageBanner';
 import AboutStyleTwo from '@/components/about/AboutStyleTwo';
-import ApproachGrid from '@/components/home/ApproachGrid';
+import ProcessSteps from '@/components/home/ProcessSteps';
+import ClientsSection from '@/components/about/ClientsSection';
+import { getAbout, getGallery, getWorkSteps } from '@/lib/content';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'About',
@@ -14,16 +18,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [about, steps, gallery] = await Promise.all([getAbout(), getWorkSteps(), getGallery()]);
   return (
     <>
       <PageBanner
         title="About <em>us</em>"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'About Us' }]}
-        backgroundImage="/images/projects/abay-bank/lobby-2.jpg"
+        backgroundImage={about.bannerImage}
       />
-      <AboutStyleTwo />
-      <ApproachGrid />
+      <AboutStyleTwo copy={about} />
+      <ProcessSteps steps={steps} />
+      <ClientsSection categories={gallery} />
     </>
   );
 }

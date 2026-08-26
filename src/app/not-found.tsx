@@ -11,7 +11,7 @@ export default function NotFound() {
           <p>The link may be out of date. Try the projects, or write to us.</p>
           <div className="error-page-actions">
             <Link href="/projects" className="theme-btn">View projects</Link>
-            <Link href="/contact" className="read-more">Get in touch <i className="fa fa-long-arrow-right"></i></Link>
+            <Link href="/contact" className="read-more">Get in touch <i className="fas fa-long-arrow-alt-right"></i></Link>
           </div>
         </div>
       </section>

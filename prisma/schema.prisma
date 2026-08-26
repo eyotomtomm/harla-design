@@ -17,165 +17,60 @@ model User {
   updatedAt      DateTime @updatedAt
 }
 
-model HeroSlide {
-  id          Int    @id @default(autoincrement())
-  rotateWord  String
-  description String @db.Text
-  image       String
-  linkUrl     String @default("/projects/house-design")
-  sortOrder   Int    @default(0)
-  variant     String @default("home1")
+/// Copy for the home "Who we are" section and the About page. One row.
+model AboutPage {
+  id          Int      @id @default(autoincrement())
+  homeHeading String   @default("Built on conviction, *delivered with care.*")
+  heading     String   @default("Strategy first, *design for impact.*")
+  intro       String   @db.Text
+  intro2      String?  @db.Text
+  mission     String   @db.Text
+  vision      String   @db.Text
+  vision2     String?  @db.Text
+  /// Longer story paragraphs, separated by blank lines
+  story       String   @db.Text
+  bannerImage String   @default("/images/projects/abay-bank/lobby-2.jpg")
+  aboutImage  String   @default("/images/projects/africa-cdc/headquarters.jpg")
+  hoverImage  String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
-model AboutTab {
-  id         Int      @id @default(autoincrement())
-  tabLabel   String
-  paragraph1 String   @db.Text
-  paragraph2 String?  @db.Text
-  bigImage   String
-  smallImage String
-  sortOrder  Int      @default(0)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-}
-
-model AboutPage {
-  id               Int      @id @default(autoincrement())
-  heading          String   @default("Where imagination meets reality")
-  whoWeAre         String   @db.Text
-  whoWeAre2        String?  @db.Text
-  mission          String   @db.Text
-  mission2         String?  @db.Text
-  vision           String   @db.Text
-  vision2          String?  @db.Text
-  bannerImage      String   @default("/images/about/page-banner.png")
-  bannerImageLight String?
-  aboutImage       String   @default("/images/about/about-right.jpg")
-  hoverImage       String?
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-}
-
-model Service {
+/// The six "Our approach" items.
+model ApproachItem {
   id          Int      @id @default(autoincrement())
   title       String
   description String   @db.Text
-  icon        String
-  image       String?
+  icon        String   @default("fas fa-compass")
+  link        String   @default("/about")
   sortOrder   Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
+/// A row on the Projects page (Lifestyle, Institutions, ...).
 model ProjectCategory {
-  id       Int       @id @default(autoincrement())
-  name     String
-  slug     String    @unique
-  projects Project[] @relation("ProjectCategories")
+  id          Int            @id @default(autoincrement())
+  name        String
+  slug        String         @unique
+  description String         @default("")
+  sortOrder   Int            @default(0)
+  images      GalleryImage[]
 }
 
-model Project {
-  id            Int               @id @default(autoincrement())
-  title         String
-  slug          String            @unique
-  description   String            @db.Text
-  description2  String?           @db.Text
-  featuredImage String
-  projectDate   String?
-  location      String?
-  architect     String?
-  beforeImage   String?
-  afterImage    String?
-  tags          String?           @db.Text
-  categories    ProjectCategory[] @relation("ProjectCategories")
-  images        ProjectImage[]
-  sortOrder     Int               @default(0)
-  isFullWidth   Boolean           @default(false)
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @updatedAt
-}
-
-model ProjectImage {
-  id        Int     @id @default(autoincrement())
-  url       String
-  alt       String  @default("")
-  sortOrder Int     @default(0)
-  section   String  @default("gallery")
-  projectId Int
-  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
-}
-
-model BlogCategory {
-  id    Int        @id @default(autoincrement())
-  name  String
-  slug  String     @unique
-  posts BlogPost[] @relation("BlogPostCategories")
-}
-
-model BlogPost {
-  id            Int            @id @default(autoincrement())
-  title         String
-  slug          String         @unique
-  content       String         @db.LongText
-  excerpt       String         @db.Text
-  featuredImage String
-  videoUrl      String?
-  author        String         @default("Admin")
-  publishedAt   DateTime       @default(now())
-  tags          String?        @db.Text
-  categories    BlogCategory[] @relation("BlogPostCategories")
-  comments      Comment[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-}
-
-model Comment {
-  id         Int       @id @default(autoincrement())
-  name       String
-  email      String
-  content    String    @db.Text
-  isApproved Boolean   @default(false)
-  parentId   Int?
-  parent     Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: SetNull)
-  replies    Comment[] @relation("CommentReplies")
-  postId     Int
-  post       BlogPost  @relation(fields: [postId], references: [id], onDelete: Cascade)
-  createdAt  DateTime  @default(now())
-}
-
-model TeamMember {
-  id        Int      @id @default(autoincrement())
-  name      String
-  role      String
-  image     String
-  rating    Int      @default(5)
-  sortOrder Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Testimonial {
-  id          Int      @id @default(autoincrement())
-  quote       String   @db.Text
-  authorName  String
-  designation String
-  authorImage String
-  rating      Int      @default(5)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model FaqItem {
-  id        Int      @id @default(autoincrement())
-  question  String   @db.Text
-  subtitle  String   @db.Text
-  answer1   String   @db.Text
-  answer2   String   @db.Text
-  sortOrder Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+/// One tile in the gallery: client · type · location.
+model GalleryImage {
+  id         Int             @id @default(autoincrement())
+  client     String
+  type       String
+  location   String?
+  image      String
+  alt        String          @default("")
+  sortOrder  Int             @default(0)
+  categoryId Int
+  category   ProjectCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
 }
 
 model WorkProcessStep {
@@ -183,58 +78,33 @@ model WorkProcessStep {
   stepNumber  Int
   title       String
   description String   @db.Text
-  image       String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
 model SiteSettings {
-  id               Int      @id @default(autoincrement())
-  siteName         String   @default("Harla Design")
-  logo             String   @default("/images/logos/logo-dark.png")
-  logoBlack        String   @default("/images/logos/logo-light.png")
-  logoWhite        String   @default("/images/logos/logo-dark.png")
-  favicon          String   @default("/images/logos/favicon.png")
-  contactPhone     String   @default("+** *** *** ****")
-  contactEmail     String   @default("****@****.com")
-  contactAddress   String   @default("****  ****")
-  contactAddress2  String   @default("****  ****")
-  mapEmbedUrl      String   @db.Text
-  footerText1      String   @db.Text
-  footerText2      String   @default("Get in touch — we're ready when you are.")
-  copyrightText    String   @default("© Copyright Harla Design 2024. All rights reserved.")
-  socialDribbble   String   @default("#")
-  socialFacebook   String   @default("#")
-  socialInstagram  String   @default("#")
-  socialLinkedin   String   @default("#")
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-}
-
-model NewsletterSubscriber {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  createdAt DateTime @default(now())
+  id              Int      @id @default(autoincrement())
+  siteName        String   @default("Harla Design")
+  contactPhone    String   @default("+971 523 797 567")
+  contactEmail    String   @default("contact@harladesign.com")
+  contactAddress  String   @default("SS Tower, 63rd Street")
+  contactAddress2 String   @default("Al Barsha South 3, Dubai UAE")
+  footerText1     String   @default("Have a project in mind? Let's build something *remarkable* together.")
+  footerText2     String   @default("Get in touch — we're ready when you are.")
+  copyrightText   String   @default("")
+  socialInstagram String   @default("https://www.instagram.com/harla_designs")
+  socialSpotify   String   @default("https://open.spotify.com/show/033jiFuYnZa19SQaeDLVtX")
+  socialSubstack  String   @default("https://beneatheconcrete.substack.com")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model ContactSubmission {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String
-  message   String   @db.Text
-  isRead    Boolean  @default(false)
-  createdAt DateTime @default(now())
-}
-
-model InteriorProject {
-  id          Int      @id @default(autoincrement())
-  subtitle    String
-  title       String
-  description String   @db.Text
-  image       String
-  linkUrl     String   @default("/projects/house-design")
-  category    String
-  sortOrder   Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  name         String
+  organisation String?
+  email        String
+  message      String   @db.Text
+  isRead       Boolean  @default(false)
+  createdAt    DateTime @default(now())
 }

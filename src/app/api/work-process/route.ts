@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { requireAdmin, readJson, pick, badRequest, dbError, idFrom } from '@/lib/require-admin';
 
-const FIELDS = ['stepNumber', 'title', 'description', 'image'];
+const FIELDS = ['stepNumber', 'title', 'description'];
 
 export async function GET() {
   try {
@@ -21,7 +21,6 @@ export async function POST(request: NextRequest) {
   if (typeof data.stepNumber !== 'number' || !data.title || !data.description) {
     return badRequest('stepNumber, title and description are required');
   }
-  if (typeof data.image !== 'string') data.image = '';
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return NextResponse.json(await prisma.workProcessStep.create({ data: data as any }), { status: 201 });

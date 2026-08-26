@@ -1,26 +1,24 @@
 import AnimateOnScroll from '@/components/shared/AnimateOnScroll';
+import type { PodcastInfo } from '@/lib/feeds';
+import { SPOTIFY_EMBED_URL } from '@/data/links';
 
-export default function PodcastSection() {
+export default function PodcastSection({ podcast }: { podcast: PodcastInfo }) {
   return (
-    <section className="podcast-section black-100-bg py-128">
+    <section className="podcast-section black-100-bg py-128" id="podcast">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-5">
             <AnimateOnScroll animation="fadeInUp" delay="delay-0-2s">
               <div className="section-title">
-                <span className="sub-title mb-16">LISTEN</span>
-                <h2>The Podcast</h2>
+                <span className="sub-title mb-16">Podcast</span>
+                <h2>{podcast.name}</h2>
               </div>
               <p className="mb-32">
-                Conversations on architecture, urbanism, and the forces shaping cities across Africa and the Gulf. Each episode brings together practitioners, developers, and thinkers who are building the next generation of places.
+                {podcast.description ||
+                  'Conversations on architecture, urbanism, and the forces shaping cities across Africa and the Gulf. Each episode brings together practitioners, developers, and thinkers who are building the next generation of places.'}
               </p>
-              <a
-                href="https://open.spotify.com/show/033jiFuYnZa19SQaeDLVtX"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="read-more"
-              >
-                Open in Spotify <i className="fa fa-long-arrow-right"></i>
+              <a href={podcast.url} target="_blank" rel="noopener noreferrer" className="read-more">
+                Listen on Spotify <i className="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
               </a>
             </AnimateOnScroll>
           </div>
@@ -28,15 +26,18 @@ export default function PodcastSection() {
             <AnimateOnScroll animation="fadeInUp" delay="delay-0-4s">
               <div className="podcast-embed">
                 <iframe
-                  src="https://open.spotify.com/embed/show/033jiFuYnZa19SQaeDLVtX?utm_source=generator&theme=0"
+                  src={SPOTIFY_EMBED_URL}
                   width="100%"
                   height="352"
                   frameBorder="0"
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
-                  title="Harla Design Podcast on Spotify"
-                  style={{ borderRadius: '12px' }}
+                  title={`${podcast.name} on Spotify`}
                 ></iframe>
+                <p className="podcast-embed-fallback">
+                  If the player doesn&apos;t load,{' '}
+                  <a href={podcast.url} target="_blank" rel="noopener noreferrer">open the show on Spotify</a>.
+                </p>
               </div>
             </AnimateOnScroll>
           </div>

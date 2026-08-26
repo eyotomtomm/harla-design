@@ -1,67 +1,76 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { submitJson, StatusMessage, type SaveState } from '@/components/admin/useAdminList';
+import { useState } from 'react';
+import { useAdminList, submitJson, StatusMessage, ListState, type SaveState } from '@/components/admin/useAdminList';
 
-interface Category { id: number; name: string; slug: string; }
+interface Category { id: number; name: string; slug: string; description: string; sortOrder: number; _count?: { images: number }; }
+const EMPTY = { name: '', slug: '', description: '', sortOrder: 0 };
+const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
 export default function CategoriesAdmin() {
-  const [items, setItems] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [form, setForm] = useState({ name: '', slug: '' });
+  const { items, loading, error, refresh } = useAdminList<Category>('/api/categories');
+  const [editing, setEditing] = useState<Category | null>(null);
+  const [form, setForm] = useState(EMPTY);
   const [status, setStatus] = useState<SaveState>({ kind: 'idle' });
 
-  const load = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch('/api/categories', { cache: 'no-store' });
-      if (!res.ok) throw new Error(`Request failed (${res.status})`);
-      const data = await res.json();
-      setItems(Array.isArray(data?.projectCategories) ? data.projectCategories : []);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not load categories');
-    } finally {
-      setLoading(false);
+  const handleSave = async () => {
+    const result = await submitJson('/api/categories', editing ? 'PUT' : 'POST', editing ? { id: editing.id, ...form } : form);
+    setStatus(result);
+    if (result.kind === 'success') {
+      setEditing(null);
+      setForm(EMPTY);
+      void refresh();
     }
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => void load(), 0);
-    return () => clearTimeout(timer);
-  }, []);
+  const handleDelete = async (item: Category) => {
+    const n = item._count?.images ?? 0;
+    if (!confirm(n > 0 ? `Delete “${item.name}” and its ${n} image(s)?` : `Delete “${item.name}”?`)) return;
+    setStatus(await submitJson('/api/categories', 'DELETE', { id: item.id }));
+    void refresh();
+  };
 
-  const handleSave = async () => {
-    const result = await submitJson('/api/categories', 'POST', form);
-    setStatus(result);
-    if (result.kind === 'success') {
-      setForm({ name: '', slug: '' });
-      void load();
-    }
+  const startEdit = (item: Category) => {
+    setEditing(item);
+    setForm({ name: item.name, slug: item.slug, description: item.description, sortOrder: item.sortOrder });
   };
 
   return (
     <>
       <div className="admin-header">
-        <h1>Project Categories</h1>
+        <h1>Gallery rows</h1>
+        <button className="admin-btn primary" onClick={() => { setEditing(null); setForm(EMPTY); }}>Add row</button>
       </div>
+      <p className="admin-alert success">Rows are the category headings on the Projects page (Lifestyle, Institutions, …), shown in sort order.</p>
       <div className="admin-card">
-        <h3>Add Category</h3>
+        <h3>{editing ? 'Edit row' : 'Add row'}</h3>
         <div className="admin-form">
-          <div className="form-group"><label htmlFor="cat-name">Name</label><input id="cat-name" type="text" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} /></div>
-          <div className="form-group"><label htmlFor="cat-slug">Slug</label><input id="cat-slug" type="text" value={form.slug} onChange={e => setForm(f => ({ ...f, slug: e.target.value }))} /></div>
-          <button className="admin-btn primary" onClick={handleSave} disabled={!form.name || !form.slug}>Create</button>
+          <div className="form-group"><label htmlFor="cat-name">Name</label><input id="cat-name" type="text" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value, slug: editing ? f.slug : slugify(e.target.value) }))} /></div>
+          <div className="form-group"><label htmlFor="cat-slug">Slug (used in the page anchor, e.g. /projects#retail)</label><input id="cat-slug" type="text" value={form.slug} onChange={e => setForm(f => ({ ...f, slug: slugify(e.target.value) }))} /></div>
+          <div className="form-group"><label htmlFor="cat-desc">One-line description</label><input id="cat-desc" type="text" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} /></div>
+          <div className="form-group"><label htmlFor="cat-order">Sort order</label><input id="cat-order" type="number" value={form.sortOrder} onChange={e => setForm(f => ({ ...f, sortOrder: parseInt(e.target.value) || 0 }))} /></div>
+          <button className="admin-btn primary" onClick={handleSave} disabled={!form.name || !form.slug}>{editing ? 'Update' : 'Create'}</button>
+          {editing && <button className="admin-btn" style={{ marginLeft: '8px' }} onClick={() => { setEditing(null); setForm(EMPTY); }}>Cancel</button>}
           <StatusMessage state={status} />
         </div>
       </div>
       <div className="admin-card">
-        <h3>All Categories</h3>
-        {loading ? <p className="admin-muted">Loading…</p> : error ? <p className="admin-alert error" role="alert">{error}</p> : items.length === 0 ? <p className="admin-muted">No categories yet.</p> : (
+        <h3>All rows</h3>
+        <ListState loading={loading} error={error} count={items.length} />
+        {items.length > 0 && (
           <table className="admin-table">
-            <thead><tr><th>Name</th><th>Slug</th></tr></thead>
+            <thead><tr><th>Order</th><th>Name</th><th>Slug</th><th>Images</th><th>Actions</th></tr></thead>
             <tbody>
               {items.map(item => (
-                <tr key={item.id}><td>{item.name}</td><td>{item.slug}</td></tr>
+                <tr key={item.id}>
+                  <td>{item.sortOrder}</td>
+                  <td>{item.name}</td>
+                  <td>{item.slug}</td>
+                  <td>{item._count?.images ?? '—'}</td>
+                  <td>
+                    <button className="admin-btn small" onClick={() => startEdit(item)}>Edit</button>
+                    <button className="admin-btn small danger" style={{ marginLeft: '4px' }} onClick={() => handleDelete(item)}>Delete</button>
+                  </td>
+                </tr>
               ))}
             </tbody>
           </table>

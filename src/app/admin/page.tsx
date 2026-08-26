@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 const SECTIONS = [
-  { label: 'Projects', url: '/api/projects', href: '/admin/projects' },
-  { label: 'Services', url: '/api/services', href: '/admin/services' },
-  { label: 'FAQ items', url: '/api/faq', href: '/admin/faq' },
-  { label: 'Process steps', url: '/api/work-process', href: '/admin/work-process' },
+  { label: 'Gallery images', url: '/api/gallery', href: '/admin/gallery', where: 'Projects page and home “Selected work”' },
+  { label: 'Gallery rows', url: '/api/categories', href: '/admin/categories', where: 'Projects page categories' },
+  { label: 'Approach items', url: '/api/approach', href: '/admin/approach', where: 'Home “Our approach”' },
+  { label: 'Process steps', url: '/api/work-process', href: '/admin/work-process', where: 'About page “From brief to delivery”' },
+  { label: 'Messages', url: '/api/messages', href: '/admin/messages', where: 'Contact form inbox' },
 ];
 
 export default function AdminDashboard() {
@@ -46,14 +47,19 @@ export default function AdminDashboard() {
         ))}
       </div>
       <div className="admin-card">
-        <h3>What this admin controls</h3>
-        <p style={{ color: '#ccc', marginBottom: 12 }}>
-          <strong>Live on the public site:</strong> Work Process steps (home page) and Settings (footer contact details and copyright).
-        </p>
-        <p style={{ color: '#999' }}>
-          Projects, Services, FAQ, About and Categories are stored in the database but the public pages currently
-          read their content from code (<code>src/data/projects.ts</code> and the page components). Edits here will not
-          appear on the site until those pages are connected.
+        <h3>Where each section appears on the site</h3>
+        <table className="admin-table">
+          <thead><tr><th>Section</th><th>Shown on</th></tr></thead>
+          <tbody>
+            {SECTIONS.map(s => (
+              <tr key={s.label}><td><Link href={s.href}>{s.label}</Link></td><td>{s.where}</td></tr>
+            ))}
+            <tr><td><Link href="/admin/about">About copy</Link></td><td>Home “Who we are” and the About page</td></tr>
+            <tr><td><Link href="/admin/settings">Settings</Link></td><td>Footer contact details, CTA text and copyright</td></tr>
+          </tbody>
+        </table>
+        <p className="admin-muted" style={{ marginTop: 16 }}>
+          Changes appear on the public site within a minute. While a table is empty the site shows its built-in defaults.
         </p>
       </div>
     </>

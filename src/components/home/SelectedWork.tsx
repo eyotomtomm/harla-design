@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { projectCategories } from '@/data/projects';
+import type { ProjectCategory } from '@/data/projects';
 
 /**
  * One tile per project category, drawn from the same data as the gallery so
  * the site has a single taxonomy. Each tile links to its gallery row.
  */
-export default function SelectedWork() {
-  const tiles = projectCategories
+export default function SelectedWork({ categories }: { categories: ProjectCategory[] }) {
+  const tiles = categories
     .map(cat => ({ cat, item: cat.items.find(i => i.fit !== 'contain') ?? cat.items[0] }))
     .filter(t => t.item);
 
@@ -19,7 +19,7 @@ export default function SelectedWork() {
             <h2>Projects across Africa and the GCC</h2>
           </div>
           <Link href="/projects" className="read-more">
-            All projects <i className="fa fa-long-arrow-right"></i>
+            All projects <i className="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
           </Link>
         </div>
 

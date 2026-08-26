@@ -21,7 +21,7 @@ export default function Error({
         </p>
         <div className="error-page-actions">
           <button type="button" onClick={reset} className="theme-btn">Try again</button>
-          <Link href="/" className="read-more">Back to home <i className="fa fa-long-arrow-right"></i></Link>
+          <Link href="/" className="read-more">Back to home <i className="fas fa-long-arrow-alt-right"></i></Link>
         </div>
       </div>
     </section>

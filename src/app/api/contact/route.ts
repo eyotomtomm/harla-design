@@ -98,11 +98,7 @@ export async function POST(request: NextRequest) {
     try {
       const prisma = (await import('@/lib/prisma')).default;
       await prisma.contactSubmission.create({
-        data: {
-          name,
-          email,
-          message: organisation ? `Organisation: ${organisation}\n\n${message}` : message,
-        },
+        data: { name, organisation: organisation || null, email, message },
       });
     } catch {
       // DB not available — the email was already sent.

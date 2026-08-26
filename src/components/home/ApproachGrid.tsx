@@ -1,92 +1,45 @@
-'use client';
 import Link from 'next/link';
+import type { ApproachItem } from '@/data/approach';
+import { SPOTIFY_SHOW_URL, SUBSTACK_URL } from '@/data/links';
 
-const approaches = [
-  {
-    icon: 'fas fa-project-diagram',
-    title: 'Development',
-    description:
-      'End-to-end service of how projects move from brief to delivery, and where the critical decisions actually happen.',
-    link: '/about',
-  },
-  {
-    icon: 'fas fa-compass',
-    title: 'Strategy',
-    description:
-      'Great places begin with great decisions. We develop strategic frameworks that align vision, investment, operations, and user experience to guide projects from ambition to execution.',
-    link: '/about',
-  },
-  {
-    icon: 'fas fa-drafting-compass',
-    title: 'Design',
-    description:
-      'We develop strategy into spatial qualities that are purposeful, enhance experience, support operations, and create lasting value.',
-    link: '/projects',
-  },
-  {
-    icon: 'fas fa-route',
-    title: 'Experience',
-    description:
-      'We design journeys, services, and interactions that make places intuitive, memorable, and people-centered.',
-    link: '/about',
-  },
-  {
-    icon: 'fas fa-city',
-    title: 'Smart Cities',
-    description:
-      'We integrate a layer of emerging technologies and future-ready thinking to improve performance, resilience, and quality of life.',
-    link: '/about',
-  },
-  {
-    icon: 'fas fa-podcast',
-    title: 'Thought Leadership',
-    description:
-      'A consistent, public voice on the future of cities in Africa and the GCC — building recognition before the brief lands.',
-    link: '/thought-leadership',
-    extraLinks: [
-      { label: 'Podcast', href: 'https://open.spotify.com/show/033jiFuYnZa19SQaeDLVtX', icon: 'fab fa-spotify' },
-      { label: 'Substack', href: 'https://beneatheconcrete.substack.com/', icon: 'fas fa-pen-nib' },
-    ],
-  },
-];
-
-export default function ApproachGrid() {
+export default function ApproachGrid({ items }: { items: ApproachItem[] }) {
   return (
     <section className="approach-grid black-100-bg py-128" id="approach">
       <div className="container">
         <div className="section-title text-center mb-96">
-          <span className="sub-title mb-16">WHAT WE DO</span>
+          <span className="sub-title mb-16">What we do</span>
           <h2>Our <em>approach</em></h2>
         </div>
         <div className="approach-grid-items">
-          {approaches.map((item, i) => (
-            <div className="approach-grid-item" key={i}>
-              <div className="approach-grid-icon">
-                <i className={item.icon}></i>
-              </div>
-              <h5 className="approach-grid-title">{item.title}</h5>
-              <p className="approach-grid-desc">{item.description}</p>
-              {item.extraLinks ? (
-                <div className="approach-grid-links">
-                  {item.extraLinks.map((el, j) => (
-                    <Link
-                      key={j}
-                      href={el.href}
-                      className="approach-grid-link"
-                      target={el.href.startsWith('http') ? '_blank' : undefined}
-                      rel={el.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    >
-                      <i className={el.icon}></i> {el.label}
-                    </Link>
-                  ))}
+          {items.map((item) => {
+            const isThoughtLeadership = item.link === '/thought-leadership';
+            return (
+              <div className="approach-grid-item" key={item.title}>
+                <div className="approach-grid-icon">
+                  <i className={item.icon} aria-hidden="true"></i>
                 </div>
-              ) : (
-                <Link href={item.link} className="approach-grid-arrow">
-                  <i className="fa fa-long-arrow-right"></i>
-                </Link>
-              )}
-            </div>
-          ))}
+                <h3 className="approach-grid-title">{item.title}</h3>
+                <p className="approach-grid-desc">{item.description}</p>
+                {isThoughtLeadership ? (
+                  <div className="approach-grid-links">
+                    <Link href="/thought-leadership" className="approach-grid-link">
+                      <i className="fas fa-long-arrow-alt-right" aria-hidden="true"></i> Read &amp; listen
+                    </Link>
+                    <a href={SPOTIFY_SHOW_URL} className="approach-grid-link" target="_blank" rel="noopener noreferrer">
+                      <i className="fab fa-spotify" aria-hidden="true"></i> Podcast
+                    </a>
+                    <a href={SUBSTACK_URL} className="approach-grid-link" target="_blank" rel="noopener noreferrer">
+                      <i className="fas fa-pen-nib" aria-hidden="true"></i> Substack
+                    </a>
+                  </div>
+                ) : (
+                  <Link href={item.link} className="approach-grid-arrow" aria-label={`More about ${item.title}`}>
+                    <i className="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
+                  </Link>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

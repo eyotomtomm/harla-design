@@ -1,14 +1,8 @@
 import Link from 'next/link';
-
-export interface ProcessStep {
-  id: number;
-  stepNumber: number;
-  title: string;
-  description: string;
-}
+import type { ProcessStep } from '@/data/process';
 
 function titleCase(s: string) {
-  return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+  return s === s.toUpperCase() ? s.charAt(0) + s.slice(1).toLowerCase() : s;
 }
 
 /** Static "brief to delivery" list — no sliders, no stock imagery. */
@@ -18,7 +12,7 @@ export default function ProcessSteps({ steps }: { steps: ProcessStep[] }) {
       <div className="container">
         <div className="process-steps-head">
           <div>
-            <span className="sub-title mb-16">How we work</span>
+            <span className="sub-title mb-16">How an engagement runs</span>
             <h2>From brief to delivery</h2>
           </div>
           <p>

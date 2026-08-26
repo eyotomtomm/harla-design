@@ -3,6 +3,9 @@ import PageBanner from '@/components/layout/PageBanner';
 import ThoughtLeadershipIntro from '@/components/thought-leadership/ThoughtLeadershipIntro';
 import PodcastSection from '@/components/thought-leadership/PodcastSection';
 import WritingSection from '@/components/thought-leadership/WritingSection';
+import { getPodcast, getSubstackPosts } from '@/lib/feeds';
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'Thought Leadership',
@@ -15,7 +18,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ThoughtLeadershipPage() {
+export default async function ThoughtLeadershipPage() {
+  const [podcast, posts] = await Promise.all([getPodcast(), getSubstackPosts(3)]);
   return (
     <>
       <PageBanner
@@ -24,8 +28,8 @@ export default function ThoughtLeadershipPage() {
         backgroundImage="/images/projects/glorious-group-hq/exterior.jpg"
       />
       <ThoughtLeadershipIntro />
-      <PodcastSection />
-      <WritingSection />
+      <PodcastSection podcast={podcast} />
+      <WritingSection posts={posts} />
     </>
   );
 }

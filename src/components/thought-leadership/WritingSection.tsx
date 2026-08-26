@@ -1,58 +1,48 @@
 import AnimateOnScroll from '@/components/shared/AnimateOnScroll';
+import { formatDate, type FeedPost } from '@/lib/feeds';
+import { SUBSTACK_URL } from '@/data/links';
 
-const channels = [
-  {
-    icon: 'fas fa-pen-nib',
-    title: 'Beneath the Concrete',
-    description:
-      'Long-form writing on urbanism, design strategy, and the built environment across Africa and the GCC — published on Substack.',
-    href: 'https://beneatheconcrete.substack.com/',
-    linkLabel: 'Read on Substack',
-  },
-  {
-    icon: 'fab fa-spotify',
-    title: 'The Podcast',
-    description:
-      'Conversations with the practitioners, developers, and thinkers building the next generation of places.',
-    href: 'https://open.spotify.com/show/033jiFuYnZa19SQaeDLVtX',
-    linkLabel: 'Listen on Spotify',
-  },
-];
-
-export default function WritingSection() {
+export default function WritingSection({ posts }: { posts: FeedPost[] }) {
   return (
-    <section className="writing-section py-128">
+    <section className="writing-section py-128" id="writing">
       <div className="container">
-        <div className="section-title text-center mb-64">
-          <AnimateOnScroll animation="fadeInUp" delay="delay-0-2s">
-            <span className="sub-title mb-16">FOLLOW</span>
-            <h2>Writing &amp; Listening</h2>
-          </AnimateOnScroll>
-        </div>
-        <div className="writing-cards">
-          {channels.map((channel, i) => (
-            <AnimateOnScroll
-              key={channel.title}
-              animation="fadeInUp"
-              delay={i === 0 ? 'delay-0-2s' : 'delay-0-4s'}
-            >
-              <div className="writing-card">
-                <div className="writing-card-icon">
-                  <i className={channel.icon}></i>
-                </div>
-                <h4>{channel.title}</h4>
-                <p>{channel.description}</p>
-                <a
-                  href={channel.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="read-more"
-                >
-                  {channel.linkLabel} <i className="fa fa-long-arrow-right"></i>
-                </a>
+        <div className="row">
+          <div className="col-lg-5">
+            <AnimateOnScroll animation="fadeInUp" delay="delay-0-2s">
+              <div className="section-title">
+                <span className="sub-title mb-16">Writing</span>
+                <h2>Beneath the Concrete</h2>
               </div>
+              <p className="mb-32">
+                Long-form writing on urbanism, design strategy, and the built environment across Africa and the GCC — published on Substack.
+              </p>
+              <a href={SUBSTACK_URL} target="_blank" rel="noopener noreferrer" className="read-more">
+                Subscribe on Substack <i className="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
+              </a>
             </AnimateOnScroll>
-          ))}
+          </div>
+          <div className="col-lg-7">
+            <AnimateOnScroll animation="fadeInUp" delay="delay-0-4s">
+              {posts.length > 0 ? (
+                <ol className="writing-posts" aria-label="Latest posts">
+                  {posts.map(post => (
+                    <li key={post.url}>
+                      <a href={post.url} target="_blank" rel="noopener noreferrer" className="writing-post">
+                        <span className="writing-post-date">{formatDate(post.date)}</span>
+                        <span className="writing-post-title">{post.title}</span>
+                        <span className="writing-post-arrow" aria-hidden="true">&rarr;</span>
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <p className="writing-posts-empty">
+                  The latest essays are on{' '}
+                  <a href={SUBSTACK_URL} target="_blank" rel="noopener noreferrer">beneatheconcrete.substack.com</a>.
+                </p>
+              )}
+            </AnimateOnScroll>
+          </div>
         </div>
       </div>
     </section>
