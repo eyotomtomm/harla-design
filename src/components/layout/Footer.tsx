@@ -61,7 +61,7 @@ export default function Footer({ settings }: FooterProps) {
                   </div>
                   <div className="right info">
                     <p>{s.contactAddress || 'SS Tower, 63rd Street'}<br />{s.contactAddress2 || 'Al Barsha South 3, Dubai UAE'}</p>
-                    <p><a href={`tel:${(s.contactPhone || '+971 523 798 567').replace(/\s/g, '')}`}>{s.contactPhone || '+971 523 798 567'}</a></p>
+                    <p><a href={`tel:${(s.contactPhone || '+971 523 797 567').replace(/\s/g, '')}`}>{s.contactPhone || '+971 523 797 567'}</a></p>
                     <p><a href={`mailto:${s.contactEmail || 'contact@harladesign.com'}`}>{s.contactEmail || 'contact@harladesign.com'}</a></p>
                     <div className="footer-social">
                       <span>Socials:</span>
@@ -84,7 +84,7 @@ export default function Footer({ settings }: FooterProps) {
                     <li><Link href="/">Home</Link></li>
                     <li><Link href="/about">About</Link></li>
                     <li><Link href="/projects">Projects</Link></li>
-                    <li><Link href="/blog">Blog</Link></li>
+                    <li><Link href="/thought-leadership">Thought Leadership</Link></li>
                     <li><Link href="/contact">Contact</Link></li>
                   </ul>
                 </div>

@@ -1,61 +1,40 @@
 import Link from 'next/link';
 import PageBanner from '@/components/layout/PageBanner';
+import { projectCategories } from '@/data/projects';
 
-const allProjects = [
-  { title: 'Abay Bank Headquarters', slug: 'abay-bank', category: 'COMMERCIAL', image: '/images/projects/abay-bank/lobby-1.jpg', description: 'A grand lobby with double-height stone paneling and natural light.' },
-  { title: 'Anbessa Office & Apartment', slug: 'anbessa-apartment', category: 'OFFICE', image: '/images/projects/anbessa-apartment/office-lounge.png', description: 'Executive floors blending focus with hospitality.' },
-  { title: 'Lobby Concept Design', slug: 'lobby-design', category: 'HOTEL', image: '/images/projects/lobby-design/lobby-b.jpg', description: 'Sculptural forms in a soaring double-height atrium.' },
-  { title: 'Anbessa Apartment Amenities', slug: 'anbessa-apartment', category: 'RESIDENTIAL', image: '/images/projects/anbessa-apartment/coffee-area.png', description: 'Coffee lounge, gym, and communal spaces designed for living.' },
-];
-
-const allBlogPosts = [
-  { title: 'The Art of Boutique Hotel Design', slug: 'boutique-hotel-design', image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80', date: '15 July 2024', excerpt: 'How thoughtful spatial planning transforms hospitality experiences.' },
-  { title: 'Material Palettes That Endure', slug: 'material-palettes', image: 'https://images.unsplash.com/photo-1616137466211-f736a1f8c7be?w=600&q=80', date: '15 July 2024', excerpt: 'Choosing finishes that age gracefully and tell a richer story over time.' },
-  { title: 'Designing for Natural Light', slug: 'designing-natural-light', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80', date: '15 July 2024', excerpt: 'Why orientation and aperture are the most important design decisions.' },
+const pages = [
+  { title: 'About Harla Design', href: '/about', description: 'Who we are, our mission, and our vision.', keywords: 'about who we are mission vision strategy advisory' },
+  { title: 'Our Approach', href: '/about#approach', description: 'Development, strategy, design, experience, smart cities, thought leadership.', keywords: 'approach development strategy design experience smart cities services' },
+  { title: 'Thought Leadership', href: '/thought-leadership', description: 'The podcast on Spotify and our Substack, Beneath the Concrete.', keywords: 'thought leadership podcast spotify substack writing blog beneath the concrete' },
+  { title: 'Contact', href: '/contact', description: 'Begin a conversation.', keywords: 'contact email phone get in touch dubai' },
 ];
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const { q } = await searchParams;
   const query = (q || '').trim().toLowerCase();
 
-  let projects: typeof allProjects = [];
-  let blogPosts: typeof allBlogPosts = [];
+  const projects = query
+    ? projectCategories.flatMap(cat =>
+        cat.items
+          .filter(item =>
+            [item.client, item.type, item.location ?? '', cat.title].join(' ').toLowerCase().includes(query),
+          )
+          .map(item => ({ ...item, category: cat.title, href: `/projects#${cat.id}` })),
+      )
+    : [];
 
-  if (query) {
-    // Try DB search first, fall back to static data
-    try {
-      const prisma = (await import('@/lib/prisma')).default;
-      const dbProjects = await prisma.project.findMany({
-        where: { OR: [{ title: { contains: query } }, { description: { contains: query } }] },
-      });
-      if (dbProjects.length > 0) {
-        projects = dbProjects.map(p => ({ title: p.title, slug: p.slug, category: '', image: p.featuredImage, description: p.description }));
-      } else {
-        projects = allProjects.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
-      }
+  const matchedPages = query
+    ? pages.filter(p => `${p.title} ${p.description} ${p.keywords}`.toLowerCase().includes(query))
+    : [];
 
-      const dbPosts = await prisma.blogPost.findMany({
-        where: { OR: [{ title: { contains: query } }, { content: { contains: query } }] },
-      });
-      if (dbPosts.length > 0) {
-        blogPosts = dbPosts.map(p => ({ title: p.title, slug: p.slug, image: p.featuredImage, date: p.publishedAt.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' }), excerpt: p.excerpt }));
-      } else {
-        blogPosts = allBlogPosts.filter(p => p.title.toLowerCase().includes(query));
-      }
-    } catch {
-      projects = allProjects.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
-      blogPosts = allBlogPosts.filter(p => p.title.toLowerCase().includes(query));
-    }
-  }
-
-  const totalResults = projects.length + blogPosts.length;
+  const totalResults = projects.length + matchedPages.length;
 
   return (
     <>
       <PageBanner
         title="SEARCH RESULTS"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Search' }]}
-        backgroundImage="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
+        backgroundImage="/images/projects/abay-bank/lobby-1.jpg"
       />
 
       <section className="blog-content py-128">
@@ -71,7 +50,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
               <p className="mb-32">Try a different search term or browse our pages.</p>
               <div style={{ display: 'flex', gap: '24px', justifyContent: 'center' }}>
                 <Link href="/projects" className="primary-readmore">View Projects</Link>
-                <Link href="/blog" className="primary-readmore">View Blog</Link>
+                <Link href="/thought-leadership" className="primary-readmore">Thought Leadership</Link>
               </div>
             </div>
           ) : (
@@ -86,14 +65,14 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                       <div key={i} className="col-lg-4 col-md-6 mb-32">
                         <div className="blog-item">
                           <div className="blog-thumb">
-                            <Link href={`/projects/${project.slug}`}>
-                              <img src={project.image} alt={project.title} style={{ width: '100%', height: '250px', objectFit: 'cover' }} />
+                            <Link href={project.href}>
+                              <img src={project.image} alt={project.alt} style={{ width: '100%', height: '250px', objectFit: project.fit === 'contain' ? 'contain' : 'cover' }} />
                             </Link>
                           </div>
                           <div className="blog-desc black-120-bg" style={{ padding: '24px' }}>
-                            <h6><Link href={`/projects/${project.slug}`}>{project.title}</Link></h6>
-                            {project.category && <span className="sub-title">{project.category}</span>}
-                            <p className="mt-16">{project.description}</p>
+                            <h6><Link href={project.href}>{project.client}</Link></h6>
+                            <span className="sub-title">{project.category}</span>
+                            <p className="mt-16">{project.type}{project.location ? ` · ${project.location}` : ''}</p>
                           </div>
                         </div>
                       </div>
@@ -102,22 +81,16 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                 </>
               )}
 
-              {blogPosts.length > 0 && (
+              {matchedPages.length > 0 && (
                 <>
-                  <h4 className="mb-32">Blog Posts</h4>
+                  <h4 className="mb-32">Pages</h4>
                   <div className="row">
-                    {blogPosts.map((post, i) => (
+                    {matchedPages.map((page, i) => (
                       <div key={i} className="col-lg-4 col-md-6 mb-32">
                         <div className="blog-item">
-                          <div className="blog-thumb">
-                            <Link href={`/blog/${post.slug}`}>
-                              <img src={post.image} alt={post.title} style={{ width: '100%', height: '250px', objectFit: 'cover' }} />
-                            </Link>
-                          </div>
                           <div className="blog-desc black-120-bg" style={{ padding: '24px' }}>
-                            <h6><Link href={`/blog/${post.slug}`}>{post.title}</Link></h6>
-                            <span><i className="fal fa-calendar-alt"></i> {post.date}</span>
-                            <p className="mt-16">{post.excerpt}</p>
+                            <h6><Link href={page.href}>{page.title}</Link></h6>
+                            <p className="mt-16">{page.description}</p>
                           </div>
                         </div>
                       </div>

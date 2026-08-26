@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { useScrollHeader } from '@/hooks/useScrollHeader';
 import { useTheme } from '@/hooks/useTheme';
@@ -9,18 +9,8 @@ import ThemeToggle from '@/components/shared/ThemeToggle';
 const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
-  {
-    label: 'Projects',
-    href: '#',
-    children: [
-      { label: 'All Projects', href: '/projects' },
-      { label: 'Before & After', href: '/projects/layout-02' },
-      { label: 'Grid View', href: '/projects/layout-03' },
-      { label: 'Detailed View', href: '/projects/layout-04' },
-      { label: 'Gallery', href: '/projects/layout-05' },
-    ],
-  },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Thought Leadership', href: '/thought-leadership' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -44,7 +34,6 @@ export default function Header() {
   const { theme } = useTheme();
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
 
   const logoSrc = theme === 'light' ? '/images/logos/logo-light.png' : '/images/logos/logo-dark.png';
   const harlaColor = theme === 'light' ? '#3D5A80' : '#FFFFFF';
@@ -85,37 +74,9 @@ export default function Header() {
 
                 <div className={`navbar-collapse${mobileOpen ? '' : ' collapse'} clearfix`}>
                   <ul className="navigation clearfix">
-                    {navItems.map((item, i) => (
-                      <li
-                        key={i}
-                        className={item.children ? 'dropdown' : ''}
-                        onMouseEnter={() => item.children && setOpenDropdown(i)}
-                        onMouseLeave={() => item.children && setOpenDropdown(null)}
-                      >
-                        {item.children ? (
-                          <a href="#" onClick={(e) => e.preventDefault()}>
-                            {item.label}
-                          </a>
-                        ) : (
-                          <Link href={item.href}>{item.label}</Link>
-                        )}
-                        {item.children && (
-                          <>
-                            <ul style={{ display: openDropdown === i ? 'block' : undefined }}>
-                              {item.children.map((child, j) => (
-                                <li key={j}>
-                                  <Link href={child.href}>{child.label}</Link>
-                                </li>
-                              ))}
-                            </ul>
-                            <div
-                              className="dropdown-btn"
-                              onClick={() => setOpenDropdown(openDropdown === i ? null : i)}
-                            >
-                              <span className="fas fa-chevron-down"></span>
-                            </div>
-                          </>
-                        )}
+                    {navItems.map((item) => (
+                      <li key={item.href}>
+                        <Link href={item.href} onClick={() => setMobileOpen(false)}>{item.label}</Link>
                       </li>
                     ))}
                   </ul>

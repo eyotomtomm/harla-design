@@ -12,7 +12,7 @@ const tabs: TabData[] = [
   {
     id: 'vision',
     label: 'VISION',
-    text: 'To be the advisory partner that serious developers choose when the quality of what they build actually matters — present from the first decision to the last detail, and trusted to protect both.',
+    text: 'To improve architectural design outcomes through thoughtful strategy, informed decisions, and attention from the first move to the last detail — with clients who understand that the quality of what you build actually matters. Design for impact.',
   },
   {
     id: 'mission',
@@ -64,6 +64,10 @@ export default function AboutTabs() {
         <div className="about-harla-header">
           <span className="sub-title mb-16">WHO WE ARE</span>
           <h2>Built on conviction,<br /><em>delivered with care.</em></h2>
+          <p className="about-harla-intro">
+            We bring strategy to architectural projects, helping clients make better decisions,
+            create greater value, and design for impact.
+          </p>
         </div>
 
         {/* Tab strip */}

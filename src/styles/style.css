@@ -4031,6 +4031,19 @@ header form.search-form button{
   font-style: italic;
 }
 
+.about-harla-intro {
+  margin: 24px 0 0;
+  max-width: 720px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--black-30);
+}
+
+.light-mode .about-harla-intro {
+  color: var(--black-30);
+}
+
 /* Tab strip */
 .about-harla-tabs {
   display: flex;
@@ -5028,6 +5041,225 @@ button.read-more{
   .interior-area .carousel-item .interior-act:first-child,
   .interior-area .carousel-item .interior-act:last-child{
     display: none;
+  }
+}
+
+/*******************************************************/
+/**************** ## Project Gallery *******************/
+/*******************************************************/
+.project-gallery-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  margin-bottom: 96px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--black-90);
+}
+
+.project-gallery-nav a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--black-30);
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.project-gallery-nav a span {
+  color: var(--black-50);
+  margin-right: 6px;
+  font-weight: 400;
+}
+
+.project-gallery-nav a:hover {
+  color: var(--heading-color);
+}
+
+.project-gallery-row {
+  padding: 96px 0;
+  border-top: 1px solid var(--black-90);
+  scroll-margin-top: 110px;
+}
+
+.project-gallery-row:first-of-type {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.project-gallery-row:last-of-type {
+  padding-bottom: 0;
+}
+
+.project-gallery-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+
+.project-gallery-head .sub-title {
+  display: block;
+}
+
+.project-gallery-head h3 {
+  margin-bottom: 0;
+}
+
+.project-gallery-head p {
+  margin: 0;
+  max-width: 480px;
+  justify-self: end;
+  color: var(--black-30);
+}
+
+.project-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 24px;
+}
+
+.project-gallery-item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  color: inherit;
+  font-family: inherit;
+  cursor: zoom-in;
+}
+
+.project-gallery-image {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--black-110);
+}
+
+.project-gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.project-gallery-image.contain img {
+  object-fit: contain;
+  padding: 32px;
+}
+
+.project-gallery-item:hover .project-gallery-image img,
+.project-gallery-item:focus-visible .project-gallery-image img {
+  transform: scale(1.03);
+}
+
+.project-gallery-item:focus-visible {
+  outline: 1px solid var(--heading-color);
+  outline-offset: 4px;
+}
+
+.project-gallery-caption {
+  padding-top: 16px;
+}
+
+.project-gallery-client {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--heading-color);
+}
+
+.project-gallery-meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--black-40);
+}
+
+/* Light mode */
+.light-mode .project-gallery {
+  background: white;
+}
+
+.light-mode .project-gallery-nav,
+.light-mode .project-gallery-row {
+  border-color: var(--black-30);
+}
+
+.light-mode .project-gallery-nav a {
+  color: var(--black-90);
+}
+
+.light-mode .project-gallery-nav a:hover {
+  color: var(--black-100);
+}
+
+.light-mode .project-gallery-head p {
+  color: var(--black-90);
+}
+
+.light-mode .project-gallery-image {
+  background: var(--black-10);
+}
+
+.light-mode .project-gallery-client {
+  color: var(--black-100);
+}
+
+.light-mode .project-gallery-meta {
+  color: var(--black-60);
+}
+
+.light-mode .project-gallery-item:focus-visible {
+  outline-color: var(--black-100);
+}
+
+/* Lightbox captions */
+.yarl__slide_title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.yarl__slide_description {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  color: var(--black-30);
+}
+
+@media only screen and (max-width: 991px) {
+  .project-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-gallery-row {
+    padding: 64px 0;
+  }
+
+  .project-gallery-nav {
+    margin-bottom: 64px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .project-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .project-gallery-head {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .project-gallery-head p {
+    justify-self: start;
   }
 }
 
@@ -7580,6 +7812,16 @@ blockquote cite.name {
 .footer-top h2{
    color: var(--black-30);
    margin-bottom: 0;
+   font-weight: 400;
+   letter-spacing: -1px;
+}
+
+.footer-top h2 em{
+   font-weight: 500;
+}
+
+.footer-top .white{
+   font-weight: 500;
 }
 
 .footer-bottom{
@@ -7605,11 +7847,9 @@ blockquote cite.name {
 }
 
 @media(min-width: 992px){
-  .footer-top h2{
-    text-shadow: 2px 0 var(--black-30);
-  }
+  .footer-top h2,
   .footer-top .white{
-    text-shadow: 2px 0 white;
+    text-shadow: none;
   }
 }
 
@@ -7842,6 +8082,302 @@ blockquote cite.name {
 
 .light-mode .theme-icon:hover {
   color: #000;
+}
+
+/*******************************************************/
+/************** ## Thought Leadership ******************/
+/*******************************************************/
+
+/* Intro section */
+.thought-leadership-intro {
+  background: var(--secondary-color);
+}
+
+.thought-leadership-intro p {
+  color: var(--black-30);
+  max-width: 600px;
+}
+
+.thought-leadership-intro-accent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 48px;
+  border: 1px solid var(--black-90);
+}
+
+.thought-leadership-intro-stat {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--heading-color);
+}
+
+.thought-leadership-intro-stat i {
+  font-size: 24px;
+  color: var(--primary-color);
+  width: 32px;
+  text-align: center;
+}
+
+/* Podcast section */
+.podcast-section p {
+  color: var(--black-30);
+  max-width: 480px;
+}
+
+.podcast-embed {
+  padding-left: 48px;
+}
+
+/* Writing section */
+.writing-section {
+  background: var(--secondary-color);
+}
+
+.writing-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.writing-card {
+  padding: 48px;
+  border: 1px solid var(--black-90);
+  transition: 0.5s;
+}
+
+.writing-card:hover {
+  border-color: var(--primary-color);
+}
+
+.writing-card-icon {
+  margin-bottom: 24px;
+}
+
+.writing-card-icon i {
+  font-size: 32px;
+  color: var(--primary-color);
+}
+
+.writing-card h4 {
+  margin-bottom: 16px;
+}
+
+.writing-card p {
+  color: var(--black-30);
+  margin-bottom: 24px;
+}
+
+/* Events gallery */
+.events-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.events-gallery-item {
+  overflow: hidden;
+}
+
+.events-gallery-image {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.events-gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.events-gallery-item:hover .events-gallery-image img {
+  transform: scale(1.05);
+}
+
+.events-gallery-caption {
+  padding: 20px 0;
+}
+
+.events-gallery-caption h6 {
+  margin-bottom: 4px;
+}
+
+.events-gallery-caption span {
+  color: var(--black-40);
+  font-size: 14px;
+}
+
+/* Light mode overrides for thought leadership */
+.light-mode .thought-leadership-intro,
+.light-mode .writing-section {
+  background: var(--black-10);
+}
+
+.light-mode .thought-leadership-intro p,
+.light-mode .podcast-section p,
+.light-mode .writing-card p {
+  color: var(--black-90);
+}
+
+.light-mode .thought-leadership-intro-accent {
+  border-color: var(--black-30);
+}
+
+.light-mode .thought-leadership-intro-stat {
+  color: var(--black-100);
+}
+
+.light-mode .thought-leadership-intro-stat i {
+  color: var(--harla-blue);
+}
+
+.light-mode .writing-card {
+  border-color: var(--black-30);
+  background: #fff;
+}
+
+.light-mode .writing-card:hover {
+  border-color: var(--harla-blue);
+}
+
+.light-mode .writing-card-icon i {
+  color: var(--harla-blue);
+}
+
+.light-mode .events-gallery-caption span {
+  color: var(--black-60);
+}
+
+/* Responsive thought leadership */
+@media only screen and (max-width: 991px) {
+  .thought-leadership-intro-accent {
+    margin-top: 48px;
+  }
+
+  .podcast-embed {
+    padding-left: 0;
+    margin-top: 48px;
+  }
+
+  .writing-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .events-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .events-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .events-gallery-image {
+    height: 240px;
+  }
+
+  .writing-card,
+  .thought-leadership-intro-accent {
+    padding: 32px;
+  }
+}
+
+/*******************************************************/
+/*********** ## Contrast fixes (dark + light) **********/
+/*******************************************************/
+
+/* FAQ: text sits on a photo — add a dark scrim so copy is legible in both modes */
+.faq-area .content {
+  position: relative;
+}
+
+.faq-area .content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 22, 40, 0.72);
+}
+
+.faq-area .content .faq-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* Light mode: sub-titles on light backgrounds were white-on-white */
+.light-mode .sub-title {
+  color: var(--harla-blue);
+}
+
+/* Light mode: sections that stay navy must not use the blue accent (blue-on-blue) */
+.light-mode .approach-grid .sub-title,
+.light-mode .podcast-section .sub-title {
+  color: #fff;
+}
+
+.light-mode .about-harla-header h2 em,
+.light-mode .approach-grid h2 em,
+.light-mode .podcast-section h2 em,
+.light-mode .banner-area h1 em,
+.light-mode .footer-top h2 em,
+.light-mode .contact-nujuma-heading em {
+  color: var(--black-20);
+}
+
+.light-mode .about-harla-tab.active,
+.light-mode .about-harla-tab-num {
+  color: #fff;
+}
+
+.light-mode .about-harla-tab.active::after {
+  background: #fff;
+}
+
+.light-mode .approach-grid-arrow:hover,
+.light-mode .approach-grid-link:hover {
+  color: #fff;
+}
+
+.light-mode .services-fullbleed-tabs button.active {
+  color: #fff;
+}
+
+.light-mode .podcast-section p {
+  color: var(--black-30);
+}
+
+.light-mode .podcast-section .read-more {
+  color: var(--black-20);
+}
+
+.light-mode .contact-nujuma-label {
+  color: var(--black-30);
+}
+
+.light-mode .contact-nujuma-submit:hover {
+  color: var(--black-20);
+  border-color: var(--black-20);
+}
+
+.light-mode .writing-card .read-more {
+  color: var(--black-90);
+}
+
+/* Light mode: filled buttons were blue background with navy text */
+.light-mode .primary-readmore {
+  color: #fff;
+}
+
+.light-mode .primary-readmore:hover {
+  background: var(--black-100);
+  color: #fff;
 }
 
 /* Reduced Motion */

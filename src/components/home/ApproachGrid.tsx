@@ -20,7 +20,7 @@ const approaches = [
     icon: 'fas fa-drafting-compass',
     title: 'Design',
     description:
-      'We translate strategy into purposeful environments that enhance experience, support operations, and create lasting value.',
+      'We develop strategy into spatial qualities that are purposeful, enhance experience, support operations, and create lasting value.',
     link: '/projects',
   },
   {
@@ -31,10 +31,10 @@ const approaches = [
     link: '/about',
   },
   {
-    icon: 'fas fa-lightbulb',
-    title: 'Innovation',
+    icon: 'fas fa-city',
+    title: 'Smart Cities',
     description:
-      'We integrate emerging technologies and future-ready thinking to improve performance, resilience, and quality of life.',
+      'We integrate a layer of emerging technologies and future-ready thinking to improve performance, resilience, and quality of life.',
     link: '/about',
   },
   {
@@ -42,17 +42,17 @@ const approaches = [
     title: 'Thought Leadership',
     description:
       'A consistent, public voice on the future of cities in Africa and the GCC — building recognition before the brief lands.',
-    link: '/blog',
+    link: '/thought-leadership',
     extraLinks: [
       { label: 'Podcast', href: 'https://open.spotify.com/show/033jiFuYnZa19SQaeDLVtX', icon: 'fab fa-spotify' },
-      { label: 'Blog', href: '/blog', icon: 'fas fa-pen-nib' },
+      { label: 'Substack', href: 'https://beneatheconcrete.substack.com/', icon: 'fas fa-pen-nib' },
     ],
   },
 ];
 
 export default function ApproachGrid() {
   return (
-    <section className="approach-grid black-100-bg py-128">
+    <section className="approach-grid black-100-bg py-128" id="approach">
       <div className="container">
         <div className="section-title text-center mb-96">
           <span className="sub-title mb-16">WHAT WE DO</span>

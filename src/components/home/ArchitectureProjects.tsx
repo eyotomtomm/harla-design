@@ -14,7 +14,7 @@ interface ArchProject {
   isFullWidth: boolean;
 }
 
-const FILTERS = ['*', 'ARCHITECTURE', 'LANDSCAPE', 'DESIGN', 'INTERIOR'];
+const FILTERS = ['*', 'ARCHITECTURE', 'DESIGN', 'INTERIOR'];
 
 export default function ArchitectureProjects({ projects }: { projects: ArchProject[] }) {
   const [filter, setFilter] = useState('*');

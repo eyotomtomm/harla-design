@@ -74,7 +74,7 @@ export default function FaqTimeline() {
                   key={i}
                   className="content"
                   style={{
-                    backgroundImage: 'url(https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=60)',
+                    backgroundImage: 'url(/images/projects/abay-bank/lobby-3.jpg)',
                     display: activeIndex === i ? 'block' : 'none',
                   }}
                 >

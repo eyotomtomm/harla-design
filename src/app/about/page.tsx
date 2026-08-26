@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import PageBanner from '@/components/layout/PageBanner';
 import AboutStyleTwo from '@/components/about/AboutStyleTwo';
-import ServiceGrid from '@/components/about/ServiceGrid';
-import AchievementCounter from '@/components/about/AchievementCounter';
-import TeamCarousel from '@/components/about/TeamCarousel';
+import ApproachGrid from '@/components/home/ApproachGrid';
 import FaqTimeline from '@/components/about/FaqTimeline';
 
 export const metadata: Metadata = {
@@ -23,13 +21,10 @@ export default function AboutPage() {
       <PageBanner
         title="ABOUT <em>US</em>"
         breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'About Us' }]}
-        backgroundImage="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
-        backgroundImageLight="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=70"
+        backgroundImage="/images/projects/abay-bank/lobby-2.jpg"
       />
       <AboutStyleTwo />
-      <ServiceGrid />
-      <AchievementCounter />
-      <TeamCarousel />
+      <ApproachGrid />
       <FaqTimeline />
     </>
   );

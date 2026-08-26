@@ -31,7 +31,7 @@ export default function ServiceCarousel() {
   const num = String(activeIndex + 1).padStart(2, '0');
 
   return (
-    <section className="services-fullbleed">
+    <section className="services-fullbleed" id="services">
       <div className="services-fullbleed-slide">
         {items.map((item, i) => (
           <div
